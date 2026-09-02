@@ -1,0 +1,2124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Personal Ai App Development Map</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Personal Ai App Development Map" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Personal Ai App Development Map&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 6px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;personal-ai-app-development-map&quot;&gt;
+  &lt;style&gt;
+    #personal-ai-app-development-map {
+      --journey-prep: var(--viz-series-1);
+      --journey-product: var(--viz-series-3);
+      --journey-design: var(--viz-series-5);
+      --journey-build: var(--viz-series-2);
+      --journey-release: var(--viz-series-6);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      color: var(--foreground);
+    }
+
+    #personal-ai-app-development-map .map-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 10px 16px;
+    }
+
+    #personal-ai-app-development-map .map-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #personal-ai-app-development-map .map-title i {
+      color: var(--primary);
+    }
+
+    #personal-ai-app-development-map .map-subtitle {
+      margin-top: 4px;
+      color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .map-scope {
+      margin-top: 5px;
+      color: var(--primary);
+      font-weight: var(--font-weight-medium);
+    }
+
+    #personal-ai-app-development-map .map-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #personal-ai-app-development-map .map-status,
+    #personal-ai-app-development-map .copy-status {
+      color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .journey-hub {
+      display: grid;
+      gap: 4px;
+      padding: 12px 14px;
+      text-align: center;
+      background: var(--accent);
+      border-radius: var(--radius-2xl);
+      corner-shape: superellipse(1.5);
+    }
+
+    #personal-ai-app-development-map .journey-hub strong {
+      color: var(--accent-foreground);
+      font-size: var(--font-size-h2);
+      font-weight: var(--font-weight-medium);
+    }
+
+    #personal-ai-app-development-map .journey-hub span {
+      color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .map-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(248px, 0.75fr);
+      align-items: start;
+      gap: 16px;
+    }
+
+    #personal-ai-app-development-map .journey-map {
+      display: grid;
+      gap: 12px;
+    }
+
+    #personal-ai-app-development-map .journey-phase {
+      position: relative;
+      display: grid;
+      gap: 7px;
+      padding-top: 7px;
+    }
+
+    #personal-ai-app-development-map .journey-phase::before {
+      position: absolute;
+      top: 0;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background: var(--border);
+      content: &quot;&quot;;
+    }
+
+    #personal-ai-app-development-map .phase-heading {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--phase-color);
+    }
+
+    #personal-ai-app-development-map .phase-heading i {
+      color: var(--phase-color);
+    }
+
+    #personal-ai-app-development-map .phase-heading h2 {
+      color: var(--foreground);
+    }
+
+    #personal-ai-app-development-map .phase-heading span {
+      color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .journey-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 7px;
+    }
+
+    #personal-ai-app-development-map .journey-card {
+      display: flex;
+      min-height: 92px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 6px;
+      padding: 10px;
+      border-color: color-mix(in srgb, var(--phase-color) 32%, var(--input));
+      color: var(--foreground);
+      background: color-mix(in srgb, var(--phase-color) 8%, var(--secondary));
+      text-align: start;
+    }
+
+    #personal-ai-app-development-map .journey-card:not(:disabled):hover {
+      background: color-mix(in srgb, var(--phase-color) 15%, var(--secondary));
+    }
+
+    #personal-ai-app-development-map .journey-card .step-number {
+      color: var(--phase-color);
+      font-family: var(--font-mono);
+    }
+
+    #personal-ai-app-development-map .journey-card .step-name {
+      font-weight: var(--font-weight-medium);
+    }
+
+    #personal-ai-app-development-map .journey-card .step-purpose {
+      color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .journey-card .step-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    #personal-ai-app-development-map .detail-card {
+      position: sticky;
+      top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    #personal-ai-app-development-map .detail-title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    #personal-ai-app-development-map .detail-title h2 {
+      overflow-wrap: anywhere;
+    }
+
+    #personal-ai-app-development-map .detail-phase {
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    #personal-ai-app-development-map .detail-intro {
+      color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .detail-section,
+    #personal-ai-app-development-map .detail-prompt {
+      display: grid;
+      gap: 4px;
+    }
+
+    #personal-ai-app-development-map .detail-section h3,
+    #personal-ai-app-development-map .detail-prompt h3 {
+      color: var(--primary);
+    }
+
+    #personal-ai-app-development-map .detail-section ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    #personal-ai-app-development-map .detail-section li + li {
+      margin-top: 3px;
+    }
+
+    #personal-ai-app-development-map .detail-result,
+    #personal-ai-app-development-map .detail-prompt {
+      padding-top: 9px;
+      border-top: 1px solid var(--border);
+    }
+
+    #personal-ai-app-development-map .prompt-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #personal-ai-app-development-map .empty-state {
+      padding: 12px 0;
+      color: var(--muted-foreground);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      #personal-ai-app-development-map .map-main {
+        grid-template-columns: 1fr;
+      }
+
+      #personal-ai-app-development-map .detail-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #personal-ai-app-development-map .journey-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  &lt;/style&gt;
+
+  &lt;div class=&quot;map-heading&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;map-title&quot;&gt;
+        &lt;i data-lucide=&quot;map&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+        &lt;h1&gt;0 基礎 AI 開發地圖&lt;/h1&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;map-subtitle&quot;&gt;從腦中的 App 想法，走到手機、網站或電腦上能使用的系統。&lt;/p&gt;
+      &lt;p class=&quot;map-scope&quot;&gt;適用：網站／小程式／手機 App／電腦軟體&lt;/p&gt;
+      &lt;p class=&quot;map-scope&quot;&gt;推薦分工：grill-me 整理想法 → codex-with-chatgpt 規劃 → 本地端 Codex 開發／測試／維護&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;map-actions&quot;&gt;
+      &lt;button id=&quot;beginner-filter&quot; class=&quot;btn btn-primary&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot;&gt;
+        &lt;i data-lucide=&quot;sprout&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+        新手可以開始
+      &lt;/button&gt;
+      &lt;span id=&quot;journey-status&quot; class=&quot;map-status text-small&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;journey-hub journey-hub--partner&quot;&gt;
+    &lt;div class=&quot;hub-kicker&quot;&gt;&lt;i data-lucide=&quot;sparkles&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;AI 協作模式&lt;/span&gt;&lt;/div&gt;
+    &lt;strong&gt;讓 AI 陪你把想法做出來&lt;/strong&gt;
+    &lt;span class=&quot;text-small&quot;&gt;每一步先確認方向，再讓 AI 產出文件、原型、程式與可驗收版本&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;map-main&quot;&gt;
+    &lt;div id=&quot;journey-map&quot; class=&quot;journey-map&quot; aria-label=&quot;AI 開發流程地圖&quot;&gt;&lt;/div&gt;
+    &lt;aside id=&quot;journey-detail&quot; class=&quot;card detail-card&quot; aria-live=&quot;polite&quot; aria-label=&quot;流程步驟詳細資訊&quot;&gt;&lt;/aside&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&quot;personal-ai-app-development-map&quot;);
+      if (!root) return;
+
+      const map = root.querySelector(&quot;#journey-map&quot;);
+      const detail = root.querySelector(&quot;#journey-detail&quot;);
+      const filterButton = root.querySelector(&quot;#beginner-filter&quot;);
+      const status = root.querySelector(&quot;#journey-status&quot;);
+      if (!map || !detail || !filterButton || !status) return;
+
+      const phases = [
+        { id: &quot;prep&quot;, label: &quot;專案準備&quot;, icon: &quot;folder-cog&quot;, color: &quot;var(--journey-prep)&quot; },
+        { id: &quot;product&quot;, label: &quot;產品定義&quot;, icon: &quot;clipboard-list&quot;, color: &quot;var(--journey-product)&quot; },
+        { id: &quot;design&quot;, label: &quot;原型與設計&quot;, icon: &quot;layout-template&quot;, color: &quot;var(--journey-design)&quot; },
+        { id: &quot;build&quot;, label: &quot;技術與開發&quot;, icon: &quot;hammer&quot;, color: &quot;var(--journey-build)&quot; },
+        { id: &quot;release&quot;, label: &quot;驗收與發布&quot;, icon: &quot;rocket&quot;, color: &quot;var(--journey-release)&quot; }
+      ];
+
+      const steps = [
+        {
+          id: &quot;prep&quot;,
+          step: &quot;0&quot;,
+          phase: &quot;prep&quot;,
+          name: &quot;建立 AI 工作空間&quot;,
+          purpose: &quot;先用 grill-me 整理想法，再建立專案資料夾&quot;,
+          beginner: true,
+          planner: &quot;grill-me：一問一答整理初步想法&quot;,
+          owner: &quot;本地端 Codex：確認路徑後建立與維護資料夾&quot;,
+          push: &quot;你有一個想法，準備讓 AI 長期協助同一個專案。&quot;,
+          materials: [&quot;想做的產品類型&quot;, &quot;電腦上的專案資料夾位置&quot;, &quot;可使用的 AI 助手或帳號&quot;],
+          result: &quot;清楚的工作空間、專案資料夾、工具分工與後續文件存放位置。&quot;,
+          prompt: `請使用 grill-me skill，先用一問一答的方式整理我的初步想法。
+每次只問我 1 個問題，等我回答後再問下一個；請釐清目標使用者、痛點、使用場景、核心功能、不要做的功能、運行設備、參考產品、資料保存方式與限制條件。
+當我的想法足夠清楚後，請先輸出完整需求摘要與專案名稱，等我確認。
+確認後，請幫我在指定位置建立專案資料夾，並規劃文件存放結構；建立前先確認資料夾路徑，不要自行選擇位置。
+
+我準備做的應用：[填寫初步想法]
+我希望建立的資料夾位置：[填寫路徑]
+
+現在直接開始`,
+        },
+        {
+          id: &quot;requirements&quot;,
+          step: &quot;1&quot;,
+          phase: &quot;product&quot;,
+          name: &quot;需求收集&quot;,
+          purpose: &quot;把模糊想法問清楚&quot;,
+          beginner: true,
+          planner: &quot;grill-me：逐題追問並形成需求摘要&quot;,
+          owner: &quot;本地端 Codex：保存需求文件與確認版本&quot;,
+          push: &quot;你只知道大方向，還說不清楚用戶、痛點、場景與功能。&quot;,
+          materials: [&quot;App 名稱或暫定名稱&quot;, &quot;初步想法&quot;, &quot;已知的使用對象或情境&quot;],
+          result: &quot;使用者需求、使用場景、功能方向、限制條件與可確認的需求文件。&quot;,
+          prompt: `請用一問一答收集我想要做的應用的需求
+每次只輸出1個問題，等我回復再問下一個，禁止一次性輸出大量問題
+提問覆蓋：目標用戶、真實痛點、使用場景、需要的功能、不要的功能、運行設備、參考產品、特殊限制
+我回答模糊就追問細節，訊息足夠之後，輸出一份結構畫完整需求文檔給我確認
+
+我準備做一個應用：__________________
+我目前的初步想法：__________________
+
+現在直接開始`,
+        },
+        {
+          id: &quot;features&quot;,
+          step: &quot;2&quot;,
+          phase: &quot;product&quot;,
+          name: &quot;功能清單&quot;,
+          purpose: &quot;把產品能力拆成三層&quot;,
+          beginner: true,
+          planner: &quot;codex-with-chatgpt：協助拆解與檢查範圍&quot;,
+          owner: &quot;本地端 Codex：保存清單與後續修訂&quot;,
+          push: &quot;需求已大致清楚，需要知道產品到底要做哪些能力。&quot;,
+          materials: [&quot;已確認的需求文件&quot;, &quot;使用者場景與痛點&quot;, &quot;核心與非核心的取捨&quot;],
+          result: &quot;模組 → 功能 → 子功能的清單，並區分必做、迭代與未來規劃。&quot;,
+          prompt: `要求：
+案這模組化拆分，分為一級模組、二級功能、三級子功能；
+區分：核心必做功能、次要迭代功能、未來可選用規劃功能，
+用標籤標註；
+每條功能寫簡短功能描述，說明這個功能決什麼使用者問題；
+不要寫UI交互細節，只輸出功能能力；
+輸出格式用Markdown列表，清晰分層，不要大段文字`,
+        },
+        {
+          id: &quot;prd&quot;,
+          step: &quot;3&quot;,
+          phase: &quot;product&quot;,
+          name: &quot;產品需求文件 PRD&quot;,
+          purpose: &quot;定義功能如何運作&quot;,
+          beginner: true,
+          planner: &quot;codex-with-chatgpt：協助規劃業務規則&quot;,
+          owner: &quot;本地端 Codex：保存 PRD 與確認版本&quot;,
+          push: &quot;功能清單已定，需要交給設計、開發與測試共同理解。&quot;,
+          materials: [&quot;完整功能清單&quot;, &quot;使用場景與流程&quot;, &quot;權限、限制與上線條件&quot;],
+          result: &quot;包含輸入、操作、輸出、規則、異常、權限與驗收條件的 PRD。&quot;,
+          prompt: `你現在是資深互聯網產品經理，擅長把零散的功能清單、需求點子、零散需求，
+轉化為結構標準、邏輯完整、可直接交付開發/測試的正是PRD文檔
+請嚴格照以下規則執行：
+1.輸入內容：我將提供零散的功能清單、修求描述、使用場景
+2.輸出格式：標準產品PRD文檔，結構完整、條理清晰、無口語化表述、邏輯閉環；
+3.必須包含模組：文檔概述(背景、目的、適用範圍)、需求受眾、產品目標、功能詳細敘述需求、業務流程、交互規則、異常場景、權限說明、非功能需求、上線(上架)約束、需求排期、備註；
+4.功能需求部分：逐條拆解每個功能，明確輸入、操作流程、輸出、規則、限制條件，覆蓋正常場景+所有異常場景；
+5.自動補全缺失訊息：若我提供的功能清單訊息不全，請基於主流產品邏輯合理補充，不遺漏核心業務規則，不隨意刪減需求；
+6.語言需求：正式、專業、落地，符合國內(台灣)互聯網團隊開發交付標準，無需沉餘廢話，可直接用於評審、開發、測試`,
+        },
+        {
+          id: &quot;prototype&quot;,
+          step: &quot;4&quot;,
+          phase: &quot;design&quot;,
+          name: &quot;產品原型&quot;,
+          purpose: &quot;先把頁面與互動走一遍&quot;,
+          beginner: true,
+          planner: &quot;codex-with-chatgpt：協助規劃頁面與互動&quot;,
+          owner: &quot;本地端 Codex：保存原型與示範資料&quot;,
+          push: &quot;PRD 是文字，想在寫程式前先實際點擊與驗收。&quot;,
+          materials: [&quot;已確認 PRD&quot;, &quot;頁面或功能清單&quot;, &quot;你對操作流程的修正意見&quot;],
+          result: &quot;可點擊的頁面原型、彈窗、表單、導覽與互動流程。&quot;,
+          prompt: `你是產品原型專家，嚴格依據PRD輸出高保真產品原型設計
+輸出要求：
+梳理全部頁面、彈窗、抽屜、浮層；每個頁面寫清楚佈局結構
+每一個組件說明清楚：位置、文字、按鈕文案、組件類型、默認狀態
+交互動實現寫清楚：點擊哪個按鈕→發生甚麼，跳轉去哪里，彈窗展示甚麼，表單題驗題示文案、彈窗、全局組件(導覽列、底部tab、側邊選單)
+不做UI視覺美化描述，只講原型結構，方便直接照著拖曳組件畫圖
+PRD資訊不足時標記【需產品確認】，不腦補需求`,
+        },
+        {
+          id: &quot;ui&quot;,
+          step: &quot;5&quot;,
+          phase: &quot;design&quot;,
+          name: &quot;UI 介面設計&quot;,
+          purpose: &quot;讓原型變成一致的視覺介面&quot;,
+          beginner: true,
+          planner: &quot;codex-with-chatgpt：協助規劃 UI 方向&quot;,
+          owner: &quot;本地端 Codex：保存 UI 實作與版本&quot;,
+          push: &quot;原型流程已確認，現在需要風格、配色、元件與響應式介面。&quot;,
+          materials: [&quot;已驗收原型&quot;, &quot;PRD 與品牌資料&quot;, &quot;喜歡的參考圖或風格描述&quot;],
+          result: &quot;UI 視覺方向、元件規則、頁面設計與不同螢幕尺寸的介面。&quot;,
+          prompt: `你是資深前端UI工程師，專業UI設計師的AI團隊主管
+基於產品需求與原型，輸出完整UI設計
+頁面需求請嚴格遵守產品需求，頁面佈局與互動都要遵守先前的產品需求和原型
+主題風格：_______________________________________________
+配色：_______________________________________________`,
+        },
+        {
+          id: &quot;trd&quot;,
+          step: &quot;6&quot;,
+          phase: &quot;build&quot;,
+          name: &quot;技術開發文件 TRD&quot;,
+          purpose: &quot;先畫好系統施工圖&quot;,
+          beginner: false,
+          planner: &quot;codex-with-chatgpt：協助架構規劃與審查&quot;,
+          owner: &quot;本地端 Codex：保存技術文件與變更紀錄&quot;,
+          push: &quot;PRD、原型與 UI 已定，需要讓開發知道資料、模組與接口如何連接。&quot;,
+          materials: [&quot;PRD、原型、UI 設計&quot;, &quot;已知的技術限制&quot;, &quot;現有系統或外部服務資料&quot;],
+          result: &quot;架構、資料模型、API、權限、安全、依賴、風險與測試要點。&quot;,
+          prompt: `你是資深系統框架師主管，負責把產品PRD轉化為開發可以用的技術需求文檔TPD。根據完整產品需求文檔PRD輸出技術需求文檔TRD，包含業務背景、用戶故事、功能說明、交互規則、約束條件。忠實原始PRD，不新增產品功能。業務描述模糊、缺失約束全部標記
+【●待產品/業務(功能)確認】，禁止自行腦捕是業務(功能)規則。然後統一匯總出問題，並給可選擇的解決文案提供我選擇確認
+
+#輸出文檔結構（嚴格下面章節輸出Markdown格式TRD）
+1文檔訊息
+1.1文檔版本、變更紀錄
+1.2業務背景與建設目標
+1.3業務邊界(那些做、那些不做)
+1.4干係人：產品、後端、前端、測試、運維
+
+2業務分析
+2.1核心業務流程圖(文本Mermaid流程圖程式碼)
+2.2用戶場景梳理
+2.3業務約束與業務規範匯總
+
+3功能模組技術分解【核心章節】
+對PRD每一條產品需求，逐條翻譯成技術需求：
+產品需求原文引用
+前端技術需求
+後端技術需求
+輸入校驗規則
+全量異常場景&amp;錯誤碼定義說明
+前端交互異常處理
+
+4數據模型設計
+4.1涉及數據表：新增表/修改已有表
+4.2核心字段說明：字段名、類型、約束、業務含意；不輸出完整建表SQL(依照使用者史常用情況而定)
+4.3數據流轉說明：數據如何產生、更新、刪除；數據保留策略
+
+5API接口需求清單
+輸出接口列表：接口名稱、接口用途、請求方式、簡要提供參閱；不需要完整json示例，複雜接口可以標註需要後續輸出接口文檔
+
+6非功能性需求
+6.1性能需求：响應時間、開發量、QPS預期、大數據分頁處理
+6.2權限需求：角色、數據權限、功能權限
+6.3埋點需求：需求埋點事件清單、埋點上報參數
+6.4日誌需求：關鍵操作日志、錯誤日誌
+6.5安全需求：參數防竄改、防重複提交、敏感數據脫敏
+6.6間容性：終端、瀏覽器、版本約束
+6.7運維：告警點、監控指標
+
+7外部&amp;內部依賴
+依賴內部服務模組
+依賴第三方接口/組件
+下游影響：那些有業務會受本次改動影響
+
+8風險評估與限制條件
+技術風險、業務風險、性能風險，給出風險說明和建議規避方式
+
+9待確認問題清單
+把PRD缺失、描述模糊的點全部匯總在這裡，統一標記待確認
+
+10測試校驗要點
+給測試同學參考：功能用例重點、邊界用例、異常用例、數據校驗點
+
+輸出格式約束
+使用標準Markdow，標題層級# ## ###，表格盡量用markdown表格；
+語言是研發視角，去掉產品營消話術，只保留可落地技術描述；
+Mermaid流程圖直接輸出代碼快；
+不要輸出PRD原文大段複製，要做拆解轉化；
+不要做方案選型(比如不能指定用Redis/Mysql，出非PRD明確給出)`,
+        },
+        {
+          id: &quot;plan&quot;,
+          step: &quot;7&quot;,
+          phase: &quot;build&quot;,
+          name: &quot;開發計畫&quot;,
+          purpose: &quot;把大工程拆成可控任務&quot;,
+          beginner: true,
+          planner: &quot;codex-with-chatgpt：協助任務拆解與優先級&quot;,
+          owner: &quot;本地端 Codex：依計畫執行與維護任務狀態&quot;,
+          push: &quot;技術方向已清楚，需要知道先做什麼、誰做、如何驗收。&quot;,
+          materials: [&quot;PRD 與 TRD&quot;, &quot;預計迭代週期&quot;, &quot;可投入的人力與時間&quot;],
+          result: &quot;迭代、里程碑、前後端與測試任務、依賴關係及驗收順序。&quot;,
+          prompt: `你是系統架構師和研發專案經理，根據PRD和TRD輸出一份開發實施計劃
+輸出內容：
+制定迭代計畫、迭代週期、里程碑；
+任務分解(前端、後端、測試)，標註前置依賴；
+輸出使用Markdown表格，簡潔實務，適合迭帶評審`,
+        },
+        {
+          id: &quot;development&quot;,
+          step: &quot;8&quot;,
+          phase: &quot;build&quot;,
+          name: &quot;產品開發與測試&quot;,
+          purpose: &quot;依文件逐步做出可運作版本&quot;,
+          beginner: false,
+          planner: &quot;codex-with-chatgpt：規劃與複核，不直接取代執行&quot;,
+          owner: &quot;本地端 Codex：開發、測試、修正與維護&quot;,
+          push: &quot;需求、設計、技術文件與任務順序都已確認。&quot;,
+          materials: [&quot;PRD、原型、UI、TRD、開發計畫&quot;, &quot;專案工作空間&quot;, &quot;每個模組的驗收標準&quot;],
+          result: &quot;可運作的系統、資料與接口、單元／接口測試、測試紀錄與自我核對清單。&quot;,
+          prompt: `你是開發+測試全端工程師，依照產品需求文檔PRD、產品原型、UI設計、TRD、開發計畫做開發與測試工作
+1.先對文檔交叉進行校驗，輸出衝突、缺失疑問清單，確認後開工
+2.嚴格按照開發計畫模組順序&amp;優先開發，不私自增加功能
+3.每個模組同時輸出：數據庫、業務接口代碼、單完測試代碼、接口測試用例、自側核對清單
+4.測試用例對齊PRD驗收標準，可直接用於提測
+5.訊息不足直接提問，禁止腦補需求`,
+        },
+        {
+          id: &quot;acceptance&quot;,
+          step: &quot;9&quot;,
+          phase: &quot;release&quot;,
+          name: &quot;驗收與版本管理&quot;,
+          purpose: &quot;反覆修改仍能比較與回復&quot;,
+          beginner: false,
+          planner: &quot;codex-with-chatgpt：協助檢視驗收策略&quot;,
+          owner: &quot;本地端 Codex：執行驗收、版本化與回滾&quot;,
+          push: &quot;已有可操作版本，需要依實際使用感受迭代，不讓改版失去控制。&quot;,
+          materials: [&quot;目前版本&quot;, &quot;驗收清單與截圖&quot;, &quot;問題、修改要求與版本命名規則&quot;],
+          result: &quot;驗收紀錄、問題清單、新版本快照、變更摘要與可回滾版本。&quot;,
+          prompt: `你是作為資深的開發工程師、專案經理，具備完整版本管理能力
+在獨立工作空間內，對所有驗收相關內容全部做版本化管理
+迭代規則：
+-在產品驗收全過程中，每發生一次調整、修改、變更(需求變更、文檔修改、參數調整、規則改動、菸收結論修改)，都必須產生一個新版本
+-每個版本都需要完整保存時刻下全部完整內容，不允許只保存變更片斷，版本內容包含：版本號、版本時間、變更說明、變更人、完整的驗收全部文檔/參數/配置/結論
+-所有版本持久保存在目前工作空間，完整保存歷史快照，不丟失歷史紀錄
+-支持隨時執行版本恢復：當我指定某個歷史版本號，你需要完整還原該版本當時的全部內容，回到該版本的工作狀態
+-每次升成新版本後，輸出版本摘要：版本編號、變更簡述、可回滾標識
+-可以响應我的指令：列出全部理歷史版本、查看某版本詳情、回滾至指定版本、對比兩個版本差異
+-禁止直接覆蓋舊版本，所有修改必須通過新建版本完成，原始歷史版本不可被修改、刪除`,
+        },
+        {
+          id: &quot;release&quot;,
+          step: &quot;10&quot;,
+          phase: &quot;release&quot;,
+          name: &quot;發布與使用&quot;,
+          purpose: &quot;把完成版本放到實際裝置使用&quot;,
+          beginner: false,
+          planner: &quot;codex-with-chatgpt：協助發布前檢查&quot;,
+          owner: &quot;本地端 Codex：打包、備份與後續維護&quot;,
+          push: &quot;最終版本已通過驗收，需要打包、備份或放到手機與指定位置。&quot;,
+          materials: [&quot;已驗收版本&quot;, &quot;發布位置或裝置&quot;, &quot;備份、網址、上架或安裝需求&quot;],
+          result: &quot;可使用的發布版本、打包位置、操作方式、備份紀錄與後續維護清單。&quot;,
+          prompt: &quot;幫我把開發好的應用打包放在：(哪個電腦硬碟某個資料夾或是git hub上面備份)&quot;
+        }
+      ];
+
+      let beginnerOnly = false;
+      let selectedId = &quot;prep&quot;;
+
+      const escapeHtml = (value) =&gt; String(value)
+        .replaceAll(&quot;&amp;&quot;, &quot;&amp;amp;&quot;)
+        .replaceAll(&quot;&lt;&quot;, &quot;&amp;lt;&quot;)
+        .replaceAll(&quot;&gt;&quot;, &quot;&amp;gt;&quot;)
+        .replaceAll(&#x27;&quot;&#x27;, &quot;&amp;quot;&quot;)
+        .replaceAll(&quot;&#x27;&quot;, &quot;&amp;#039;&quot;);
+
+      const visibleSteps = () =&gt; beginnerOnly ? steps.filter((step) =&gt; step.beginner) : steps;
+
+      const renderDetail = () =&gt; {
+        const step = steps.find((item) =&gt; item.id === selectedId) ?? visibleSteps()[0] ?? steps[0];
+        if (!step) return;
+        selectedId = step.id;
+        const phase = phases.find((item) =&gt; item.id === step.phase);
+        detail.innerHTML = `
+          &lt;div class=&quot;detail-title&quot;&gt;
+            &lt;div&gt;
+              &lt;h2&gt;${escapeHtml(step.step)} · ${escapeHtml(step.name)}&lt;/h2&gt;
+              &lt;p class=&quot;detail-intro&quot;&gt;${escapeHtml(step.purpose)}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;span class=&quot;detail-phase text-small&quot;&gt;${escapeHtml(phase.label)}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;detail-section&quot;&gt;
+            &lt;h3&gt;建議分工&lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;規劃：&lt;/strong&gt;${escapeHtml(step.planner)}&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;執行／維護：&lt;/strong&gt;${escapeHtml(step.owner)}&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;detail-section&quot;&gt;
+            &lt;h3&gt;適合推&lt;/h3&gt;
+            &lt;p&gt;${escapeHtml(step.push)}&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;detail-section&quot;&gt;
+            &lt;h3&gt;需要提供&lt;/h3&gt;
+            &lt;ul&gt;${step.materials.map((item) =&gt; `&lt;li&gt;${escapeHtml(item)}&lt;/li&gt;`).join(&quot;&quot;)}&lt;/ul&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;detail-section detail-result&quot;&gt;
+            &lt;h3&gt;最後拿到&lt;/h3&gt;
+            &lt;p&gt;${escapeHtml(step.result)}&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;detail-prompt&quot;&gt;
+            &lt;h3&gt;${step.id === &quot;prep&quot; ? &quot;本步驟提示詞（可複製）&quot; : &quot;原文提示詞（可複製）&quot;}&lt;/h3&gt;
+            &lt;textarea id=&quot;prompt-text&quot; class=&quot;form-control&quot; rows=&quot;8&quot; readonly aria-label=&quot;${escapeHtml(step.name)}的可直接使用提示詞&quot;&gt;${escapeHtml(step.prompt)}&lt;/textarea&gt;
+            &lt;div class=&quot;prompt-actions&quot;&gt;
+              &lt;button id=&quot;copy-prompt&quot; class=&quot;btn btn-primary&quot; type=&quot;button&quot;&gt;
+                &lt;i data-lucide=&quot;copy&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+                複製提示詞
+              &lt;/button&gt;
+              &lt;span id=&quot;copy-status&quot; class=&quot;copy-status text-small&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        `;
+        globalThis.lucide?.createIcons?.({ attrs: { width: 16, height: 16 } });
+      };
+
+      const renderMap = () =&gt; {
+        const shown = visibleSteps();
+        const hub = `
+          &lt;div class=&quot;journey-hub journey-hub--route&quot;&gt;
+            &lt;div class=&quot;hub-kicker&quot;&gt;&lt;i data-lucide=&quot;route&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;流程總覽&lt;/span&gt;&lt;/div&gt;
+            &lt;strong&gt;AI 開發旅程&lt;/strong&gt;
+            &lt;span class=&quot;text-small&quot;&gt;先定義，再設計；先驗收，再發布&lt;/span&gt;
+          &lt;/div&gt;
+        `;
+        const phaseMarkup = phases.map((phase) =&gt; {
+          const items = shown.filter((step) =&gt; step.phase === phase.id);
+          const cards = items.length === 0
+            ? `&lt;p class=&quot;empty-state text-small&quot;&gt;目前沒有符合的步驟&lt;/p&gt;`
+            : items.map((step) =&gt; `
+              &lt;button class=&quot;btn viz-tile journey-card&quot; type=&quot;button&quot; data-step-id=&quot;${escapeHtml(step.id)}&quot; aria-pressed=&quot;${step.id === selectedId ? &quot;true&quot; : &quot;false&quot;}&quot; style=&quot;--phase-color:${phase.color}&quot;&gt;
+                &lt;span class=&quot;step-number text-small&quot;&gt;STEP ${escapeHtml(step.step)}&lt;/span&gt;
+                &lt;span class=&quot;step-name&quot;&gt;${escapeHtml(step.name)}&lt;/span&gt;
+                &lt;span class=&quot;step-purpose text-small&quot;&gt;${escapeHtml(step.purpose)}&lt;/span&gt;
+                &lt;span class=&quot;step-meta&quot;&gt;${step.beginner ? `&lt;span class=&quot;viz-badge&quot;&gt;新手可開始&lt;/span&gt;` : &quot;&quot;}&lt;/span&gt;
+              &lt;/button&gt;
+            `).join(&quot;&quot;);
+          return `
+            &lt;section class=&quot;journey-phase&quot; style=&quot;--phase-color:${phase.color}&quot; aria-labelledby=&quot;phase-${phase.id}&quot;&gt;
+              &lt;div class=&quot;phase-heading&quot;&gt;
+                &lt;i data-lucide=&quot;${phase.icon}&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+                &lt;h2 id=&quot;phase-${phase.id}&quot;&gt;${escapeHtml(phase.label)}&lt;/h2&gt;
+                &lt;span class=&quot;text-small&quot;&gt;${items.length} 步&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;journey-cards&quot;&gt;${cards}&lt;/div&gt;
+            &lt;/section&gt;
+          `;
+        }).join(&quot;&quot;);
+        map.innerHTML = hub + phaseMarkup;
+        map.querySelectorAll(&quot;[data-step-id]&quot;).forEach((button) =&gt; {
+          button.addEventListener(&quot;click&quot;, () =&gt; {
+            selectedId = button.getAttribute(&quot;data-step-id&quot;);
+            renderMap();
+            renderDetail();
+          });
+        });
+        status.textContent = beginnerOnly ? `顯示 ${shown.length} 個新手可開始步驟` : `共 ${shown.length} 個開發步驟`;
+        filterButton.setAttribute(&quot;aria-pressed&quot;, String(beginnerOnly));
+        filterButton.innerHTML = `&lt;i data-lucide=&quot;sprout&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; ${beginnerOnly ? &quot;顯示完整流程&quot; : &quot;新手可以開始&quot;}`;
+        globalThis.lucide?.createIcons?.({ attrs: { width: 16, height: 16 } });
+      };
+
+      filterButton.addEventListener(&quot;click&quot;, () =&gt; {
+        beginnerOnly = !beginnerOnly;
+        const shown = visibleSteps();
+        if (!shown.some((step) =&gt; step.id === selectedId)) selectedId = shown[0]?.id ?? selectedId;
+        renderMap();
+        renderDetail();
+      });
+
+      root.addEventListener(&quot;click&quot;, async (event) =&gt; {
+        const target = event.target instanceof Element ? event.target : null;
+        const copyButton = target?.closest(&quot;#copy-prompt&quot;);
+        if (!copyButton) return;
+        const promptText = detail.querySelector(&quot;#prompt-text&quot;);
+        const copyStatus = detail.querySelector(&quot;#copy-status&quot;);
+        if (!promptText || !copyStatus) return;
+        copyButton.disabled = true;
+        copyStatus.textContent = &quot;複製中…&quot;;
+        let copied = false;
+        try {
+          if (globalThis.navigator?.clipboard?.writeText) {
+            await globalThis.navigator.clipboard.writeText(promptText.value);
+            copied = true;
+          }
+        } catch (error) {
+          copied = false;
+        }
+        if (!copied) {
+          promptText.focus();
+          promptText.select();
+          try {
+            copied = document.execCommand(&quot;copy&quot;);
+          } catch (error) {
+            copied = false;
+          }
+        }
+        copyButton.disabled = false;
+        copyStatus.textContent = copied
+          ? &quot;已複製，可貼到 Codex 使用&quot;
+          : &quot;已選取提示詞，請按 Ctrl+C 複製&quot;;
+      });
+
+      renderMap();
+      renderDetail();
+    })();
+  &lt;/script&gt;
+
+  &lt;style&gt;
+    #personal-ai-app-development-map {
+      --journey-prep: var(--primary);
+      --journey-product: var(--primary);
+      --journey-design: var(--primary);
+      --journey-build: var(--primary);
+      --journey-release: var(--primary);
+      gap: 20px;
+      padding: 24px clamp(16px, 4vw, 48px) 36px;
+      background: var(--background);
+      border-radius: var(--radius-2xl);
+    }
+
+    #personal-ai-app-development-map,
+    #personal-ai-app-development-map * {
+      min-width: 0;
+    }
+
+    #personal-ai-app-development-map .map-subtitle,
+    #personal-ai-app-development-map .map-scope,
+    #personal-ai-app-development-map .detail-intro,
+    #personal-ai-app-development-map .detail-section p,
+    #personal-ai-app-development-map .detail-section li,
+    #personal-ai-app-development-map .copy-status {
+      overflow-wrap: anywhere;
+    }
+
+    #personal-ai-app-development-map textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
+    }
+
+    #personal-ai-app-development-map .map-heading {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    #personal-ai-app-development-map .map-heading &gt; :first-child {
+      max-width: 760px;
+    }
+
+    #personal-ai-app-development-map .map-title h1 {
+      letter-spacing: -0.025em;
+    }
+
+    #personal-ai-app-development-map .map-scope {
+      color: var(--muted-foreground);
+      font-weight: var(--font-weight-normal);
+    }
+
+    #personal-ai-app-development-map .map-scope:last-child {
+      color: var(--primary);
+    }
+
+    #personal-ai-app-development-map .journey-hub {
+      max-width: 1120px;
+      margin: 0 auto;
+      gap: 8px;
+      padding: 22px 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2xl);
+      text-align: start;
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--foreground) 5%, transparent);
+    }
+
+    #personal-ai-app-development-map .journey-hub--partner {
+      border-color: color-mix(in srgb, var(--primary) 28%, var(--border));
+      background: color-mix(in srgb, var(--primary) 7%, var(--card));
+      box-shadow: inset 4px 0 0 var(--primary), 0 8px 24px color-mix(in srgb, var(--foreground) 5%, transparent);
+    }
+
+    #personal-ai-app-development-map .journey-hub--route {
+      background: var(--card);
+    }
+
+    #personal-ai-app-development-map .hub-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-size: var(--font-size-small);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: 0.03em;
+    }
+
+    #personal-ai-app-development-map .hub-kicker i {
+      width: 16px;
+      height: 16px;
+    }
+
+    #personal-ai-app-development-map .journey-hub strong {
+      color: var(--foreground);
+      letter-spacing: -0.02em;
+    }
+
+    #personal-ai-app-development-map .journey-hub &gt; span:not(.hub-kicker) {
+      color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .map-main {
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    #personal-ai-app-development-map .journey-phase {
+      gap: 10px;
+      padding: 14px 0 0;
+    }
+
+    #personal-ai-app-development-map .journey-phase::before {
+      left: 0;
+      right: 0;
+      background: color-mix(in srgb, var(--primary) 22%, var(--border));
+    }
+
+    #personal-ai-app-development-map .phase-heading {
+      gap: 8px;
+    }
+
+    #personal-ai-app-development-map .phase-heading h2 {
+      letter-spacing: -0.015em;
+    }
+
+    #personal-ai-app-development-map .journey-cards {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    #personal-ai-app-development-map .journey-card {
+      min-height: 128px;
+      padding: 14px;
+      border-color: var(--border);
+      background: var(--card);
+      border-radius: var(--radius-2xl);
+      touch-action: manipulation;
+    }
+
+    #personal-ai-app-development-map .journey-card:not(:disabled):hover {
+      background: color-mix(in srgb, var(--primary) 7%, var(--card));
+    }
+
+    #personal-ai-app-development-map .journey-card .step-number {
+      color: var(--primary);
+      letter-spacing: 0.04em;
+    }
+
+    #personal-ai-app-development-map .detail-card {
+      border-radius: var(--radius-2xl);
+      border: 1px solid var(--border);
+    }
+
+    #personal-ai-app-development-map #copy-prompt,
+    #personal-ai-app-development-map #beginner-filter {
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+
+    @media (max-width: 900px) {
+      #personal-ai-app-development-map {
+        padding: 18px 14px 26px;
+      }
+
+      #personal-ai-app-development-map .map-heading {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      #personal-ai-app-development-map .map-actions {
+        justify-content: flex-start;
+      }
+
+      #personal-ai-app-development-map .map-main {
+        grid-template-columns: 1fr;
+      }
+
+      #personal-ai-app-development-map .detail-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #personal-ai-app-development-map {
+        gap: 16px;
+        padding: 16px 12px 24px;
+      }
+
+      #personal-ai-app-development-map .journey-hub {
+        padding: 20px 16px;
+      }
+
+      #personal-ai-app-development-map .journey-cards {
+        grid-template-columns: 1fr;
+      }
+
+      #personal-ai-app-development-map .journey-card {
+        min-height: 112px;
+        padding: 12px;
+      }
+
+      #personal-ai-app-development-map .detail-card {
+        padding: 14px;
+      }
+
+      #personal-ai-app-development-map .prompt-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      #personal-ai-app-development-map #copy-prompt {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 390px) {
+      #personal-ai-app-development-map {
+        padding: 14px 10px 22px;
+      }
+
+      #personal-ai-app-development-map .journey-hub,
+      #personal-ai-app-development-map .detail-card {
+        padding: 16px 12px;
+      }
+
+      #personal-ai-app-development-map .map-title h1,
+      #personal-ai-app-development-map .journey-hub strong,
+      #personal-ai-app-development-map .detail-title h2 {
+        overflow-wrap: anywhere;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #personal-ai-app-development-map *,
+      #personal-ai-app-development-map *::before,
+      #personal-ai-app-development-map *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  &lt;/style&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
