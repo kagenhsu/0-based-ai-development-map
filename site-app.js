@@ -60,7 +60,18 @@
 
   const tenStageFlow = () => `<figure class="flowchart-figure"><div class="flowchart-viewport"><img class="flowchart-image" src="assets/ai-development-flow.png" alt="0 基礎 AI 開發地圖：分成三個階段，從專案準備、需求收集、功能清單與產品需求文件，進入產品原型、UI 設計、技術文件與開發計畫，再完成產品開發、驗收、發布與使用。" /></div></figure>`;
 
-  const assistantComparison = () => `<div class="guide-table-wrap"><table class="guide-table guide-table-assistants"><caption>AI 開發助手分析表</caption><thead><tr><th>工具</th><th>產品型態</th><th>適合誰</th><th>主要能力</th><th>準備與注意</th><th>官方資料</th></tr></thead><tbody>${data.prepGuide.assistantComparison.map((tool) => `<tr><th scope="row">${escapeHtml(tool.name)}</th><td>${escapeHtml(tool.form)}</td><td>${escapeHtml(tool.fit)}</td><td>${escapeHtml(tool.strengths)}</td><td>${escapeHtml(tool.setup)}<small>${escapeHtml(tool.note)}</small></td><td>${tool.sourceUrl ? `<a href="${escapeHtml(tool.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(tool.source)} ↗</a>` : `<span class="pending-label">${escapeHtml(tool.source)}</span>`}</td></tr>`).join("")}</tbody></table></div>`;
+  const assistantComparison = () => {
+    const rows = [
+      ["產品型態", "form"],
+      ["適合誰", "fit"],
+      ["主要能力", "strengths"],
+      ["安裝準備", "setup"],
+      ["注意事項", "note"]
+    ];
+    const detailRows = rows.map(([label, key]) => `<tr><th scope="row">${escapeHtml(label)}</th>${data.prepGuide.assistantComparison.map((tool) => `<td>${escapeHtml(tool[key])}</td>`).join("")}</tr>`).join("");
+    const sourceRow = `<tr><th scope="row">官方資料</th>${data.prepGuide.assistantComparison.map((tool) => `<td>${tool.sourceUrl ? `<a href="${escapeHtml(tool.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(tool.source)} ↗</a>` : `<span class="pending-label">${escapeHtml(tool.source)}</span>`}</td>`).join("")}</tr>`;
+    return `<div class="guide-table-wrap"><table class="guide-table guide-table-assistants"><caption>AI 開發助手分析表</caption><thead><tr><th>介紹項目</th>${data.prepGuide.assistantComparison.map((tool) => `<th scope="col">${escapeHtml(tool.name)}</th>`).join("")}</tr></thead><tbody>${detailRows}${sourceRow}</tbody></table></div>`;
+  };
 
   const modelTaskMatrix = () => `<div class="guide-table-wrap"><table class="guide-table"><caption>高階模型與性價比模型任務分工</caption><thead><tr><th>任務</th><th>建議層級</th><th>原因</th><th>常見例子</th></tr></thead><tbody>${data.prepGuide.modelTaskMatrix.map((row) => `<tr><th scope="row">${escapeHtml(row.task)}</th><td><span class="tier-label">${escapeHtml(row.tier)}</span></td><td>${escapeHtml(row.reason)}</td><td>${escapeHtml(row.examples)}</td></tr>`).join("")}</tbody></table></div>`;
 
