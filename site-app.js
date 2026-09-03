@@ -60,15 +60,9 @@
 
   const tenStageFlow = () => `<figure class="flowchart-figure"><div class="flowchart-viewport"><img class="flowchart-image" src="assets/ai-development-flow.png" alt="0 基礎 AI 開發地圖：分成三個階段，從專案準備、需求收集、功能清單與產品需求文件，進入產品原型、UI 設計、技術文件與開發計畫，再完成產品開發、驗收、發布與使用。" /></div></figure>`;
 
-  const storyMilestones = [
-    { label: "靈感想法", icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 22h4M8.5 15.5A7 7 0 1 1 15.5 15.5C14.6 16.3 14 17 14 18h-4c0-1-.6-1.7-1.5-2.5Z" /></svg>` },
-    { label: "告訴 AI", icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 13.6 8.4 19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3ZM19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z" /></svg>` },
-    { label: "需求與原型", icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3Zm7 0v5h5M10 12h5M10 16h5" /></svg>` },
-    { label: "開發驗收", icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 7-5 5 5 5M15 7l5 5-5 5M13 4l-2 16" /></svg>` },
-    { label: "發布使用", icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="m8 12 2.6 2.6L16.5 9" /></svg>` }
-  ];
+  const storyMilestones = ["靈感想法", "告訴 AI", "需求與原型", "開發驗收", "發布使用"];
 
-  const storyIconRow = () => `<div class="story-icons" aria-label="從想法到發布的五個重點">${storyMilestones.map((milestone) => `<div class="story-icon-item"><span class="story-icon">${milestone.icon}</span><strong>${escapeHtml(milestone.label)}</strong></div>`).join("")}</div>`;
+  const storyFlow = () => `<ol class="story-flow" aria-label="從想法到發布的五步驟流程">${storyMilestones.map((label, index) => `<li class="story-flow-step"><span class="story-flow-number">${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(label)}</strong></li>`).join("")}</ol>`;
 
   const assistantComparison = () => {
     const rows = [
@@ -192,7 +186,7 @@
   const overview = () => `
     <div class="content">
       <section class="hero"><p class="eyebrow">AI DEVELOPMENT WORKFLOW</p><h1>${escapeHtml(data.title)}</h1><p>${escapeHtml(data.subtitle)} 用正式、可交付的方式，把每一個階段拆開管理。</p></section>
-      <section class="home-story" aria-labelledby="story-title"><p class="eyebrow">HOW IT WORKS</p><h2 id="story-title">從一個想法，到可以使用的應用</h2>${storyIconRow()}<div class="home-story-copy">${data.homeStory.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div></section>
+      <section class="home-story" aria-labelledby="story-title"><p class="eyebrow">HOW IT WORKS</p><h2 id="story-title">從一個想法，到可以使用的應用</h2>${storyFlow()}<div class="home-story-copy">${data.homeStory.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div></section>
       <section class="overview-flow"><div class="section-heading"><div><h2>10 大階段流程圖</h2><p>第 0 步是專案起點；第 1～10 步是核心開發流程</p></div></div>${tenStageFlow()}</section>
       <div class="notice">使用方式：從側邊欄選擇階段；閱讀「適合推、需要提供、最後拿到」，再進入完整互動地圖複製對應提示詞。</div>
     </div>`;
