@@ -1155,6 +1155,12 @@ html&gt;body{padding:0}&lt;/style&gt;
         padding-bottom: 3px;
       }
 
+      #personal-ai-app-development-map .flowchart-graphic svg {
+        width: 100%;
+        min-width: 540px;
+        max-width: none;
+      }
+
       #personal-ai-app-development-map .flowchart-item {
         flex: 0 0 auto;
         flex-direction: column;
@@ -1580,25 +1586,61 @@ Mermaid流程圖直接輸出代碼快；
         const coreCount = shown.filter((step) =&gt; step.step !== &quot;0&quot;).length;
         const flowchart = shown.length === 0
           ? `&lt;p class=&quot;empty-state text-small&quot;&gt;目前沒有符合的流程&lt;/p&gt;`
-          : `&lt;div class=&quot;flowchart&quot; aria-label=&quot;AI 開發旅程流程圖&quot;&gt;
-              &lt;div class=&quot;flowchart-caption&quot;&gt;
-                &lt;strong&gt;${coreCount} 個核心流程${shown.some((step) =&gt; step.step === &quot;0&quot;) ? &quot;＋1 個起點&quot; : &quot;&quot;}&lt;/strong&gt;
-                &lt;span class=&quot;text-small&quot;&gt;點擊節點可查看詳細資料&lt;/span&gt;
-              &lt;/div&gt;
-              &lt;div class=&quot;flowchart-track&quot; role=&quot;list&quot;&gt;
-                ${shown.map((step, index) =&gt; {
-                  const phase = phases.find((item) =&gt; item.id === step.phase);
-                  return `&lt;div class=&quot;flowchart-item&quot; role=&quot;listitem&quot;&gt;
-                    &lt;button class=&quot;flowchart-node&quot; type=&quot;button&quot; data-step-id=&quot;${escapeHtml(step.id)}&quot; aria-pressed=&quot;${step.id === selectedId ? &quot;true&quot; : &quot;false&quot;}&quot; style=&quot;--flow-color:${phase.color}&quot;&gt;
-                      &lt;span class=&quot;flowchart-step text-small&quot;&gt;STEP ${escapeHtml(step.step)}&lt;/span&gt;
-                      &lt;span class=&quot;flowchart-name&quot;&gt;${escapeHtml(step.name)}&lt;/span&gt;
-                      &lt;span class=&quot;flowchart-phase text-small&quot;&gt;${escapeHtml(phase.label)}&lt;/span&gt;
-                    &lt;/button&gt;
-                    ${index &lt; shown.length - 1 ? `&lt;span class=&quot;flowchart-connector&quot; aria-hidden=&quot;true&quot;&gt;&lt;i data-lucide=&quot;arrow-right&quot;&gt;&lt;/i&gt;&lt;/span&gt;` : &quot;&quot;}
-                  &lt;/div&gt;`;
-                }).join(&quot;&quot;)}
-              &lt;/div&gt;
-            &lt;/div&gt;`;
+          : (() =&gt; {
+              const columns = globalThis.matchMedia?.(&quot;(max-width: 900px)&quot;).matches ? 1 : 4;
+              const nodeWidth = columns === 1 ? 520 : 220;
+              const nodeHeight = 96;
+              const columnGap = columns === 1 ? 0 : 24;
+              const rowGap = 42;
+              const canvasWidth = columns * nodeWidth + (columns - 1) * columnGap + 32;
+              const rows = Math.ceil(shown.length / columns);
+              const canvasHeight = rows * nodeHeight + (rows - 1) * rowGap + 32;
+              const nodeMarkup = shown.map((step, index) =&gt; {
+                const phase = phases.find((item) =&gt; item.id === step.phase);
+                const column = index % columns;
+                const row = Math.floor(index / columns);
+                const x = 16 + column * (nodeWidth + columnGap);
+                const y = 16 + row * (nodeHeight + rowGap);
+                const purpose = String(step.purpose);
+                const purposeLineOne = purpose.slice(0, 24);
+                const purposeLineTwo = purpose.length &gt; 24 ? `${purpose.slice(24, 46)}…` : &quot;&quot;;
+                const next = shown[index + 1];
+                const nextColumn = (index + 1) % columns;
+                const nextRow = Math.floor((index + 1) / columns);
+                const nextX = 16 + nextColumn * (nodeWidth + columnGap);
+                const nextY = 16 + nextRow * (nodeHeight + rowGap);
+                const connector = next
+                  ? nextRow === row
+                    ? `&lt;path class=&quot;flowchart-image-connector&quot; d=&quot;M ${x + nodeWidth} ${y + nodeHeight / 2} H ${nextX}&quot; marker-end=&quot;url(#flow-arrow)&quot; /&gt;`
+                    : `&lt;path class=&quot;flowchart-image-connector&quot; d=&quot;M ${x + nodeWidth / 2} ${y + nodeHeight} V ${nextY - 16} H ${nextX + nodeWidth / 2} V ${nextY}&quot; marker-end=&quot;url(#flow-arrow)&quot; /&gt;`
+                  : &quot;&quot;;
+                return `${connector}
+                  &lt;g class=&quot;flowchart-image-node&quot; data-step-id=&quot;${escapeHtml(step.id)}&quot; role=&quot;button&quot; tabindex=&quot;0&quot; aria-label=&quot;STEP ${escapeHtml(step.step)} ${escapeHtml(step.name)}：${escapeHtml(step.purpose)}&quot; aria-pressed=&quot;${step.id === selectedId ? &quot;true&quot; : &quot;false&quot;}&quot; style=&quot;--flow-color:${phase.color}&quot;&gt;
+                    &lt;rect x=&quot;${x}&quot; y=&quot;${y}&quot; width=&quot;${nodeWidth}&quot; height=&quot;${nodeHeight}&quot; rx=&quot;18&quot; /&gt;
+                    &lt;text class=&quot;flowchart-image-step&quot; x=&quot;${x + 16}&quot; y=&quot;${y + 23}&quot;&gt;STEP ${escapeHtml(step.step)} · ${escapeHtml(phase.label)}&lt;/text&gt;
+                    &lt;text class=&quot;flowchart-image-name&quot; x=&quot;${x + 16}&quot; y=&quot;${y + 51}&quot;&gt;${escapeHtml(step.name)}&lt;/text&gt;
+                    &lt;text class=&quot;flowchart-image-purpose&quot; x=&quot;${x + 16}&quot; y=&quot;${y + 73}&quot;&gt;${escapeHtml(purposeLineOne)}&lt;/text&gt;
+                    ${purposeLineTwo ? `&lt;text class=&quot;flowchart-image-purpose&quot; x=&quot;${x + 16}&quot; y=&quot;${y + 88}&quot;&gt;${escapeHtml(purposeLineTwo)}&lt;/text&gt;` : &quot;&quot;}
+                  &lt;/g&gt;`;
+              }).join(&quot;&quot;);
+              return `&lt;div class=&quot;flowchart&quot; aria-label=&quot;AI 開發旅程流程圖&quot;&gt;
+                &lt;div class=&quot;flowchart-caption&quot;&gt;
+                  &lt;strong&gt;${coreCount} 個核心流程${shown.some((step) =&gt; step.step === &quot;0&quot;) ? &quot;＋1 個起點&quot; : &quot;&quot;}&lt;/strong&gt;
+                  &lt;span class=&quot;text-small&quot;&gt;圖片含步驟說明，點擊節點可查看詳細資料&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;figure class=&quot;flowchart-graphic&quot;&gt;
+                  &lt;svg viewBox=&quot;0 0 ${canvasWidth} ${canvasHeight}&quot; role=&quot;img&quot; aria-label=&quot;${coreCount} 個核心流程${shown.some((step) =&gt; step.step === &quot;0&quot;) ? &quot;加上 1 個起點&quot; : &quot;&quot;}&quot;&gt;
+                    &lt;defs&gt;
+                      &lt;marker id=&quot;flow-arrow&quot; markerWidth=&quot;8&quot; markerHeight=&quot;8&quot; refX=&quot;7&quot; refY=&quot;4&quot; orient=&quot;auto&quot;&gt;
+                        &lt;path d=&quot;M 0 0 L 8 4 L 0 8 z&quot; fill=&quot;var(--primary)&quot; /&gt;
+                      &lt;/marker&gt;
+                    &lt;/defs&gt;
+                    ${nodeMarkup}
+                  &lt;/svg&gt;
+                  &lt;figcaption class=&quot;text-small&quot;&gt;流程圖中的每個節點都可點擊；手機版可左右滑動查看完整文字。&lt;/figcaption&gt;
+                &lt;/figure&gt;
+              &lt;/div&gt;`;
+            })();
         const hub = `
           &lt;div class=&quot;journey-hub journey-hub--route&quot;&gt;
             &lt;div class=&quot;hub-kicker&quot;&gt;&lt;i data-lucide=&quot;route&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;流程總覽&lt;/span&gt;&lt;/div&gt;
@@ -1637,6 +1679,13 @@ Mermaid流程圖直接輸出代碼快；
             renderMap();
             renderDetail();
           });
+          if (button.tagName.toLowerCase() === &quot;g&quot;) {
+            button.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+              if (event.key !== &quot;Enter&quot; &amp;&amp; event.key !== &quot; &quot;) return;
+              event.preventDefault();
+              button.click();
+            });
+          }
         });
         status.textContent = beginnerOnly ? `顯示 ${shown.length} 個新手可開始步驟` : `共 ${shown.length} 個開發步驟`;
         filterButton.setAttribute(&quot;aria-pressed&quot;, String(beginnerOnly));
@@ -1815,6 +1864,73 @@ Mermaid流程圖直接輸出代碼快；
 
     #personal-ai-app-development-map .flowchart-caption span {
       color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .flowchart-graphic {
+      margin: 0;
+      overflow-x: auto;
+      padding: 3px 2px 6px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: color-mix(in srgb, var(--background) 82%, var(--primary));
+      scrollbar-width: thin;
+    }
+
+    #personal-ai-app-development-map .flowchart-graphic svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-width: 0;
+    }
+
+    #personal-ai-app-development-map .flowchart-image-node {
+      cursor: pointer;
+      outline: none;
+    }
+
+    #personal-ai-app-development-map .flowchart-image-node rect {
+      fill: var(--background);
+      stroke: color-mix(in srgb, var(--flow-color) 34%, var(--border));
+      stroke-width: 1.5;
+      transition: fill 160ms ease, stroke 160ms ease, stroke-width 160ms ease;
+    }
+
+    #personal-ai-app-development-map .flowchart-image-node:hover rect,
+    #personal-ai-app-development-map .flowchart-image-node:focus rect,
+    #personal-ai-app-development-map .flowchart-image-node[aria-pressed=&quot;true&quot;] rect {
+      fill: color-mix(in srgb, var(--flow-color) 7%, var(--background));
+      stroke: var(--flow-color);
+      stroke-width: 2.5;
+    }
+
+    #personal-ai-app-development-map .flowchart-image-step {
+      fill: var(--flow-color);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    #personal-ai-app-development-map .flowchart-image-name {
+      fill: var(--foreground);
+      font-size: 16px;
+      font-weight: var(--font-weight-medium);
+    }
+
+    #personal-ai-app-development-map .flowchart-image-purpose {
+      fill: var(--muted-foreground);
+      font-size: 12px;
+    }
+
+    #personal-ai-app-development-map .flowchart-image-connector {
+      fill: none;
+      stroke: var(--primary);
+      stroke-width: 2;
+      opacity: 0.7;
+    }
+
+    #personal-ai-app-development-map .flowchart-graphic figcaption {
+      padding: 4px 8px 0;
+      color: var(--muted-foreground);
+      text-align: center;
     }
 
     #personal-ai-app-development-map .flowchart-track {
