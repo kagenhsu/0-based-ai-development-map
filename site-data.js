@@ -170,7 +170,10 @@ globalThis.AI_MAP_DATA = {
       { level: "二級功能", example: "運動紀錄輸入", description: "模組底下的具體功能" },
       { level: "三級子功能", example: "開始時間、運動類型", description: "功能需要包含的細項" }
     ],
-    prompt: `要求：
+    prompt: `/codex-with-chatgpt
+/grill me
+
+要求：
 案這模組化拆分，分為一級模組、二級功能、三級子功能；
 區分：核心必做功能、次要迭代功能、未來可選用規劃功能，
 用標籤標註；
