@@ -73,7 +73,7 @@
         <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
         <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
       </div>
-      ${item.step === "0" ? prepGuide() : `<div class="process-card-foot">
+      ${item.step === "0" ? "" : `<div class="process-card-foot">
         <span class="prompt-state">${item.promptAvailable ? "提示詞：請開啟完整互動地圖複製" : "預備動作：先確認專案資料夾位置，不使用提示詞"}</span>
         <a class="map-link" href="${data.fullMapUrl}">${item.promptAvailable ? "查看並複製提示詞 →" : "查看完整流程 →"}</a>
       </div>`}
@@ -89,7 +89,8 @@
 
   const sectionPage = () => {
     const items = data.items.filter((item) => item.section === currentId);
-    return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section><div class="notice">本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。</div></div>`;
+    const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
+    return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。</div></div>`;
   };
 
   root.innerHTML = `<div class="site-shell">${sidebar()}<div class="site-main">${header()}<main>${currentId === "overview" ? overview() : sectionPage()}</main></div></div>`;
