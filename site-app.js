@@ -283,7 +283,30 @@
     </article>`;
   };
 
-  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : item.step === "5" ? uiGuideCard(item) : item.step === "6" ? trdGuideCard(item) : item.step === "7" ? developmentPlanGuideCard(item) : item.step === "8" ? productDevelopmentGuideCard(item) : `
+  const acceptanceVersionGuideCard = (item) => {
+    const guide = data.acceptanceVersionGuide;
+    return `<article class="process-card requirements-card acceptance-version-card" id="step-${escapeHtml(item.step)}">
+      <div class="process-card-head">
+        <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
+        <span class="process-badge">驗收＋可回滾版本</span>
+      </div>
+      <div class="process-details">
+        <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
+        <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
+        <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
+      </div>
+      <section class="requirements-intro"><span>修改前先留版本</span><h3>${escapeHtml(guide.lead)}</h3>${guide.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <section class="version-reasons" aria-labelledby="version-reasons-title"><div class="requirements-section-head"><div><span>為什麼要做版本管理</span><h3 id="version-reasons-title">兩個重要原因</h3></div></div><div>${guide.reasons.map((reason) => `<article><span>${escapeHtml(reason.number)}</span><div><strong>${escapeHtml(reason.title)}</strong><p>${escapeHtml(reason.description)}</p></div></article>`).join("")}</div></section>
+      <section class="version-cycle" aria-labelledby="version-cycle-title"><div class="requirements-section-head"><div><span>驗收迭代流程</span><h3 id="version-cycle-title">每次修改都能返回</h3></div></div><div class="version-cycle-list">${guide.cycle.map((entry, index) => `<article><span>${escapeHtml(entry.number)}</span><strong>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.description)}</p></article>${index < guide.cycle.length - 1 ? `<span class="version-cycle-arrow" aria-hidden="true">→</span>` : ""}`).join("")}</div></section>
+      <section class="version-snapshot" aria-labelledby="version-snapshot-title"><div class="requirements-section-head"><div><span>完整快照</span><h3 id="version-snapshot-title">每個版本必須保存</h3></div></div><ul>${guide.snapshotContents.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul></section>
+      <section class="requirements-prompt" aria-labelledby="version-prompt-title"><div class="requirements-section-head"><div><span>可直接使用</span><h3 id="version-prompt-title">版本管理原文提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="acceptanceVersionGuide">複製提示詞</button></div><pre><code>${escapeHtml(guide.prompt)}</code></pre></section>
+      <section class="version-commands" aria-labelledby="version-commands-title"><div class="requirements-section-head"><div><span>後續可直接下指令</span><h3 id="version-commands-title">四項版本操作</h3></div></div><div>${guide.commands.map((entry, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(entry)}</strong></article>`).join("")}</div></section>
+      <section class="version-package" aria-labelledby="version-package-title"><div class="requirements-section-head"><div><span>驗收完成後</span><h3 id="version-package-title">打包最終版本</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="acceptanceVersionGuide" data-copy-field="packagePrompt">複製打包提示詞</button></div><p>${escapeHtml(guide.packagePrompt)}</p><aside><strong>備份邊界</strong><span>${escapeHtml(guide.backupNote)}</span></aside></section>
+      <section class="requirements-complete"><span>改到自己滿意</span><strong>確認最終版本，再打包到指定位置</strong><p>${escapeHtml(guide.closing)}</p></section>
+    </article>`;
+  };
+
+  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : item.step === "5" ? uiGuideCard(item) : item.step === "6" ? trdGuideCard(item) : item.step === "7" ? developmentPlanGuideCard(item) : item.step === "8" ? productDevelopmentGuideCard(item) : item.step === "9" ? acceptanceVersionGuideCard(item) : `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(item.name)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
@@ -313,7 +336,7 @@
     const selectedItem = sectionItems.find((item) => item.step === currentStep);
     const items = selectedItem ? [selectedItem] : sectionItems.slice(0, 1);
     const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
-    const notice = ["1", "2", "3", "4", "5", "6", "7", "8"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
+    const notice = ["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
     return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">${escapeHtml(notice)}</div></div>`;
   };
 
