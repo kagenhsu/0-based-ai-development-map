@@ -39,9 +39,17 @@
       <div class="header-actions"><a class="header-link" href="${data.fullMapUrl}">開啟完整互動地圖</a></div>
     </header>`;
 
-  const flowStrip = () => `<div class="flow-strip" aria-label="五大流程">
-    ${data.sections.map((section, index) => `${index ? '<span class="flow-arrow" aria-hidden="true">›</span>' : ""}<a class="flow-step" href="${section.page}"><span class="flow-step-number">${section.number}</span><strong>${escapeHtml(section.label)}</strong><span>${escapeHtml(section.short)}</span></a>`).join("")}
-  </div>`;
+  const stageNode = (item) => {
+    const section = data.sections.find((entry) => entry.id === item.section);
+    return `<a class="stage-node" href="${section.page}"><span class="stage-number">第 ${escapeHtml(item.step)} 步</span><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.purpose)}</span></a>`;
+  };
+
+  const stageRow = (items) => `<div class="stage-row">${items.map((item, index) => `${index ? '<span class="stage-arrow" aria-hidden="true">→</span>' : ""}${stageNode(item)}`).join("")}</div>`;
+
+  const tenStageFlow = () => {
+    const coreItems = data.items.filter((item) => item.step !== "0");
+    return `<div class="ten-stage-flow" aria-label="10 大階段流程圖"><div class="flow-start"><span>起點</span><strong>第 0 步｜專案準備</strong><small>先確認專案資料夾要放在哪裡</small></div>${stageRow(coreItems.slice(0, 5))}<div class="flow-turn" aria-hidden="true">↓ 進入技術與發布流程</div>${stageRow(coreItems.slice(5, 10))}</div>`;
+  };
 
   const processCard = (item) => `
     <article class="process-card">
@@ -63,8 +71,8 @@
   const overview = () => `
     <div class="content">
       <section class="hero"><p class="eyebrow">AI DEVELOPMENT WORKFLOW</p><h1>${escapeHtml(data.title)}</h1><p>${escapeHtml(data.subtitle)} 用正式、可交付的方式，把每一個階段拆開管理。</p><div class="hero-actions"><a class="primary-button" href="${data.sections[0].page}">從第 1 步開始</a><a class="secondary-button" href="${data.fullMapUrl}">查看完整互動地圖</a></div></section>
-      <section class="overview-flow"><div class="section-heading"><div><h2>五大階段</h2><p>側邊欄可直接進入各階段獨立網頁</p></div></div>${flowStrip()}</section>
-      <section class="section-grid" aria-label="五大階段功能"><div class="section-card"><div class="section-card-top"><span class="section-card-number">START</span><span class="section-card-count">11 個流程</span></div><h3>從想法到發布</h3><p>先準備位置，再依序完成產品定義、原型設計、技術開發與驗收發布。</p><div class="section-card-foot"><span>完整流程</span><a href="${data.fullMapUrl}">開啟 →</a></div></div>${data.sections.map((section) => `<a class="section-card" href="${section.page}"><div class="section-card-top"><span class="section-card-number">${section.number}</span><span class="section-card-count">${itemCount(section.id)} 個流程</span></div><h3>${escapeHtml(section.label)}</h3><p>${escapeHtml(section.short)}，每階段都有獨立頁面與交付結果。</p><div class="section-card-foot"><span>進入階段</span><span>查看 →</span></div></a>`).join("")}</section>
+      <section class="home-story" aria-labelledby="story-title"><p class="eyebrow">HOW IT WORKS</p><h2 id="story-title">從一個想法，到可以使用的應用</h2>${data.homeStory.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <section class="overview-flow"><div class="section-heading"><div><h2>10 大階段流程圖</h2><p>第 0 步是專案起點；第 1～10 步是核心開發流程</p></div></div>${tenStageFlow()}</section>
       <div class="notice">使用方式：從側邊欄選擇階段；閱讀「適合推、需要提供、最後拿到」，再進入完整互動地圖複製對應提示詞。</div>
     </div>`;
 

@@ -2,6 +2,13 @@ globalThis.AI_MAP_DATA = {
   title: "0 基礎 AI 開發地圖",
   subtitle: "從想法、需求到可驗收的網站、系統與 App。",
   fullMapUrl: "0-based-ai-development-map.html",
+  homeStory: [
+    "如果你跟我一樣，腦中偶爾會跳出一個 APP 的想法，我會帶你走完一整個流程。",
+    "從我有一個想法，到它變成了一個在手機上能用的應用，全程不需要你寫一行程式碼，不需要你學任何程式語言，也不需要你花錢買任何軟體。",
+    "你唯一需要做的就是對 AI 說出你的想法。我會帶你從專案準備、產品想法、需求文件、開發上線逐步推進，讓應用自己長出來。",
+    "從選擇適合的智能體、大模型，建立工作空間，再到讓 AI 幫你理清需求、整理成功能清單，制定完整的產品需求文件、產品原型、UI 介面、技術開發文件與開發計畫，並進行開發、驗收、上線。",
+    "你可以使用這個流程開發網頁、小程式、手機應用程式與電腦軟體。"
+  ],
   sections: [
     { id: "prep", number: "01", label: "專案準備", short: "確認專案位置", page: "step-1-project-preparation.html" },
     { id: "product", number: "02", label: "產品定義", short: "釐清需求與功能", page: "step-2-product-definition.html" },
