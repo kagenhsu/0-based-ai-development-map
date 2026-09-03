@@ -232,6 +232,25 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .trd-audience-grid article { display: grid; align-content: start; gap: 8px; min-width: 0; padding: 18px; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-surface); }
 .trd-audience-grid span { color: var(--site-blue); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; font-weight: 700; }
 .trd-audience-grid p { margin: 0; color: var(--site-muted); line-height: 1.7; }
+.plan-benefits, .plan-flow, .plan-table-section { display: grid; gap: 16px; padding: 22px; border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-surface-soft); }
+.plan-benefits > div:last-child { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.plan-benefits article { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 12px; min-width: 0; padding: 18px; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-surface); }
+.plan-benefits article > span { display: grid; width: 40px; height: 40px; place-items: center; border-radius: 12px; color: var(--site-blue); background: var(--site-blue-soft); font: 700 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.plan-benefits article div { display: grid; gap: 7px; }
+.plan-benefits article strong { font-size: 15px; }
+.plan-benefits article p { margin: 0; color: var(--site-muted); font-size: 13px; line-height: 1.65; }
+.plan-flow-list { display: grid; grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr) 24px minmax(0, 1fr) 24px minmax(0, 1fr); align-items: stretch; gap: 8px; }
+.plan-flow-list article { display: grid; align-content: start; gap: 8px; min-width: 0; padding: 16px; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-surface); }
+.plan-flow-list article > span { color: var(--site-blue); font: 700 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.plan-flow-list article strong { font-size: 14px; }
+.plan-flow-list article p { margin: 0; color: var(--site-muted); font-size: 12px; line-height: 1.55; }
+.plan-flow-arrow { display: grid; place-items: center; color: var(--site-blue); font-size: 19px; font-weight: 700; }
+.plan-table-section .requirements-section-head > p { max-width: 340px; margin: 0; color: var(--site-muted); font-size: 12px; line-height: 1.6; text-align: right; }
+.plan-table-wrap { max-width: 100%; overflow-x: auto; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-surface); }
+.plan-table-wrap table { width: 100%; min-width: 920px; border-collapse: collapse; font-size: 12px; line-height: 1.55; }
+.plan-table-wrap th, .plan-table-wrap td { padding: 13px 14px; border-bottom: 1px solid var(--site-line); text-align: left; vertical-align: top; }
+.plan-table-wrap th { color: var(--site-blue); background: var(--site-blue-soft); font-size: 11px; white-space: nowrap; }
+.plan-table-wrap tbody tr:last-child td { border-bottom: 0; }
 .prep-guide { display: grid; gap: 18px; margin-top: 24px; }
 .prep-guide-head { display: grid; gap: 7px; padding: 18px; border-left: 3px solid var(--site-blue); border-radius: 0 14px 14px 0; background: var(--site-blue-soft); }
 .prep-guide-head span { color: var(--site-blue); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
@@ -312,6 +331,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .ui-formula { grid-template-columns: 1fr; }
   .ui-formula-operator { min-height: 24px; }
   .trd-boundary { grid-template-columns: 1fr; }
+  .plan-flow-list { grid-template-columns: 1fr; }
+  .plan-flow-arrow { min-height: 22px; transform: rotate(90deg); }
   .capability-row { grid-template-columns: 1fr auto; }
   .capability-row p { grid-column: 1 / -1; }
   .process-card { scroll-margin-top: calc(var(--site-mobile-sidebar-height) + var(--site-current-header-height) + 24px); }
@@ -340,6 +361,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .prototype-change-list { grid-template-columns: 1fr; }
   .ui-progress-list { grid-template-columns: 1fr; }
   .trd-outline ol, .trd-audience-grid { grid-template-columns: 1fr; }
+  .plan-benefits > div:last-child { grid-template-columns: 1fr; }
+  .plan-table-section .requirements-section-head > p { max-width: none; text-align: left; }
   .back-to-top { width: 48px; height: 48px; }
 }
 

@@ -396,6 +396,36 @@ Mermaid流程圖直接輸出代碼快；
     note: "原文同時使用 TPD 與 TRD，正式使用前請確認是否統一為 TRD；其餘原文內容保持不變。",
     closing: "TRD 確認後，開發團隊會取得可落地的施工圖紙，接著才能安全地拆解開發計畫並開始實作。"
   },
+  developmentPlanGuide: {
+    title: "第七步：開發計畫（任務拆解）",
+    lead: "把一個複雜的開發任務拆成可控制、可驗收的小任務，再依順序逐步完成。",
+    intro: [
+      "TRD 完成後，不要直接把整個專案一次交給 AI 開發。先整理迭代、里程碑、前後端與測試任務，才能在每個節點確認方向。",
+      "任務拆小後，也能把大量執行工作交給性價比較高的模型，重要決策則保留給能力較高的模型。"
+    ],
+    benefits: [
+      { number: "01", title: "每一步都可控", description: "把一個大任務拆成約 20 個小任務，每完成一項就檢查交付結果，避免做到一半才發現方向錯誤。" },
+      { number: "02", title: "降低模型成本", description: "小型、重複的執行任務可使用性價比較高的模型；保留高階模型處理架構、風險與重要決策。" }
+    ],
+    flow: [
+      { number: "01", title: "讀取 PRD／TRD", description: "確認產品與技術範圍" },
+      { number: "02", title: "設定迭代與里程碑", description: "決定週期與交付節點" },
+      { number: "03", title: "拆解開發任務", description: "標註角色、依賴與驗收" },
+      { number: "04", title: "依序執行", description: "完成一項、驗收一項" }
+    ],
+    prompt: `你是系統架構師和研發專案經理，根據PRD和TRD輸出一份開發實施計劃
+輸出內容：
+制定迭代計畫、迭代週期、里程碑；
+任務分解(前端、後端、測試)，標註前置依賴；
+輸出使用Markdown表格，簡潔實務，適合迭帶評審`,
+    tableRows: [
+      { iteration: "迭代 1", milestone: "基礎流程可操作", role: "前端", task: "建立主要頁面與導覽流程", dependency: "UI 設計定稿", acceptance: "主要頁面可進入與切換" },
+      { iteration: "迭代 1", milestone: "核心資料可保存", role: "後端", task: "建立核心資料寫入與查詢", dependency: "TRD 資料模型", acceptance: "正常與異常資料皆有明確回應" },
+      { iteration: "迭代 2", milestone: "核心功能可驗收", role: "前後端", task: "串接主要功能與狀態處理", dependency: "前後端基礎任務", acceptance: "核心使用流程可完整走通" },
+      { iteration: "迭代 2", milestone: "版本可交付", role: "測試", task: "執行功能、邊界與異常測試", dependency: "核心功能完成", acceptance: "阻擋問題修正並通過複驗" }
+    ],
+    closing: "把開發計畫確認後，就能照著依賴順序逐項執行；每個任務都有負責角色、前置條件與驗收結果。"
+  },
   sections: [
     { id: "prep", number: "01", label: "專案準備", short: "確認專案位置", page: "step-1-project-preparation.html" },
     { id: "product", number: "02", label: "產品定義", short: "釐清需求與功能", page: "step-2-product-definition.html" },
