@@ -39,17 +39,7 @@
       <div class="header-actions"><a class="header-link" href="${data.fullMapUrl}">開啟完整互動地圖</a></div>
     </header>`;
 
-  const stageNode = (item) => {
-    const section = data.sections.find((entry) => entry.id === item.section);
-    return `<a class="stage-node" href="${section.page}"><span class="stage-number">第 ${escapeHtml(item.step)} 步</span><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.purpose)}</span></a>`;
-  };
-
-  const stageRow = (items) => `<div class="stage-row">${items.map((item, index) => `${index ? '<span class="stage-arrow" aria-hidden="true">→</span>' : ""}${stageNode(item)}`).join("")}</div>`;
-
-  const tenStageFlow = () => {
-    const coreItems = data.items.filter((item) => item.step !== "0");
-    return `<div class="ten-stage-flow" aria-label="10 大階段流程圖"><div class="flow-start"><span>起點</span><strong>第 0 步｜專案準備</strong><small>先確認專案資料夾要放在哪裡</small></div>${stageRow(coreItems.slice(0, 5))}<div class="flow-turn" aria-hidden="true">↓ 進入技術與發布流程</div>${stageRow(coreItems.slice(5, 10))}</div>`;
-  };
+  const tenStageFlow = () => `<figure class="flowchart-figure"><div class="flowchart-viewport"><img class="flowchart-image" src="assets/ai-development-flow.png" alt="0 基礎 AI 開發地圖：分成三個階段，從專案準備、需求收集、功能清單與產品需求文件，進入產品原型、UI 設計、技術文件與開發計畫，再完成產品開發、驗收、發布與使用。" /></div><figcaption class="flowchart-caption">流程圖先看階段，再看細節；需要操作時，可從下方或側邊欄進入對應頁面。</figcaption><nav class="flowchart-shortcuts" aria-label="流程階段快速導覽">${data.sections.map((section) => `<a href="${section.page}">${escapeHtml(section.number)} ${escapeHtml(section.label)} →</a>`).join("")}</nav></figure>`;
 
   const processCard = (item) => `
     <article class="process-card">
