@@ -17,6 +17,7 @@
   const hashStep = location.hash.startsWith("#step-") ? location.hash.slice(6) : "";
   const queryStep = new URLSearchParams(location.search).get("step") || "";
   const currentStep = queryStep || hashStep || data.items.find((item) => item.section === currentId)?.step || "";
+  const currentItem = data.items.find((item) => item.section === currentId && item.step === currentStep);
   const readNavState = () => {
     try { return JSON.parse(localStorage.getItem(navStorageKey) || "{}"); }
     catch { return {}; }
@@ -53,10 +54,15 @@
       <p class="sidebar-foot">點選階段名稱展開子流程；每個階段都可獨立查看與交付。</p>
     </aside>`;
 
-  const header = () => `
-    <header class="site-header">
-      <div class="breadcrumb"><span>${currentSection ? `第 ${currentSection.number} 步驟` : "流程首頁"}</span><strong>${escapeHtml(currentSection?.label ?? "AI 開發流程總覽")}</strong><small>${escapeHtml(currentSection?.short ?? "從想法逐步完成可驗收、可使用的版本")}</small></div>
-    </header>`;
+  const header = () => {
+    const stepLabel = currentItem ? `第 ${currentItem.step} 步` : "流程首頁";
+    const title = currentItem?.name ?? "AI 開發流程總覽";
+    const description = currentItem?.purpose ?? "從想法逐步完成可驗收、可使用的版本";
+    return `
+      <header class="site-header">
+        <div class="breadcrumb"><span>${escapeHtml(stepLabel)}</span><strong>${escapeHtml(title)}</strong><small>${escapeHtml(description)}</small></div>
+      </header>`;
+  };
 
   const tenStageFlow = () => `<figure class="flowchart-figure"><div class="flowchart-viewport"><img class="flowchart-image" src="assets/ai-development-flow.png" alt="0 基礎 AI 開發地圖：分成三個階段，從專案準備、需求收集、功能清單與產品需求文件，進入產品原型、UI 設計、技術文件與開發計畫，再完成產品開發、驗收、發布與使用。" /></div></figure>`;
 
