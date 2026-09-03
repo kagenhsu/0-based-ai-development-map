@@ -15,7 +15,8 @@
   const itemCount = (sectionId) => data.items.filter((item) => item.section === sectionId).length;
   const navStorageKey = "ai-map-sidebar-groups";
   const hashStep = location.hash.startsWith("#step-") ? location.hash.slice(6) : "";
-  const currentStep = hashStep || data.items.find((item) => item.section === currentId)?.step || "";
+  const queryStep = new URLSearchParams(location.search).get("step") || "";
+  const currentStep = queryStep || hashStep || data.items.find((item) => item.section === currentId)?.step || "";
   const readNavState = () => {
     try { return JSON.parse(localStorage.getItem(navStorageKey) || "{}"); }
     catch { return {}; }
@@ -29,7 +30,7 @@
   const itemForStep = (step) => data.items.find((item) => item.step === step);
   const itemHref = (item) => {
     const section = data.sections.find((entry) => entry.id === item.section);
-    return `${section.page}#step-${item.step}`;
+    return `${section.page}?step=${item.step}#step-${item.step}`;
   };
 
   const sidebar = () => `
@@ -148,7 +149,9 @@
     </div>`;
 
   const sectionPage = () => {
-    const items = data.items.filter((item) => item.section === currentId);
+    const sectionItems = data.items.filter((item) => item.section === currentId);
+    const selectedItem = sectionItems.find((item) => item.step === currentStep);
+    const items = selectedItem ? [selectedItem] : sectionItems.slice(0, 1);
     const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
     return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。</div></div>`;
   };
@@ -196,7 +199,14 @@
       link.setAttribute("aria-current", linkStep === activeStep ? "page" : "false");
     });
   };
-  window.addEventListener("hashchange", syncCurrentChild);
+  window.addEventListener("hashchange", () => {
+    const nextStep = location.hash.startsWith("#step-") ? location.hash.slice(6) : "";
+    if (nextStep && nextStep !== currentStep) {
+      location.reload();
+      return;
+    }
+    syncCurrentChild();
+  });
   const backToTopButton = document.querySelector(".back-to-top");
   if (backToTopButton) {
     const syncBackToTop = () => {
