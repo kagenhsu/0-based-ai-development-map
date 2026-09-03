@@ -1241,22 +1241,15 @@ html&gt;body{padding:0}&lt;/style&gt;
           step: &quot;0&quot;,
           phase: &quot;prep&quot;,
           name: &quot;建立 AI 工作空間&quot;,
-          purpose: &quot;先用 grill-me 整理想法，再建立專案資料夾&quot;,
+          purpose: &quot;先確認專案資料夾要放在哪裡&quot;,
           beginner: true,
-          planner: &quot;grill-me：一問一答整理初步想法&quot;,
-          owner: &quot;本地端 Codex：確認路徑後建立與維護資料夾&quot;,
-          push: &quot;你有一個想法，準備讓 AI 長期協助同一個專案。&quot;,
-          materials: [&quot;想做的產品類型&quot;, &quot;電腦上的專案資料夾位置&quot;, &quot;可使用的 AI 助手或帳號&quot;],
-          result: &quot;清楚的工作空間、專案資料夾、工具分工與後續文件存放位置。&quot;,
-          prompt: `請使用 grill-me skill，先用一問一答的方式整理我的初步想法。
-每次只問我 1 個問題，等我回答後再問下一個；請釐清目標使用者、痛點、使用場景、核心功能、不要做的功能、運行設備、參考產品、資料保存方式與限制條件。
-當我的想法足夠清楚後，請先輸出完整需求摘要與專案名稱，等我確認。
-確認後，請幫我在指定位置建立專案資料夾，並規劃文件存放結構；建立前先確認資料夾路徑，不要自行選擇位置。
-
-我準備做的應用：[填寫初步想法]
-我希望建立的資料夾位置：[填寫路徑]
-
-現在直接開始`,
+          planner: &quot;使用者：確認專案名稱與資料夾位置&quot;,
+          owner: &quot;本地端 Codex：確認後建立資料夾與文件結構&quot;,
+          push: &quot;準備開始專案，但還沒有決定資料夾要放在哪裡。&quot;,
+          materials: [&quot;專案名稱或暫定名稱&quot;, &quot;希望存放的磁碟與資料夾位置&quot;, &quot;是否需要同步雲端或版本庫（可選）&quot;],
+          result: &quot;確認的專案資料夾路徑，以及後續文件的存放位置。&quot;,
+          prepAction: &quot;先確認專案名稱與資料夾路徑；路徑確認後，再由本地端 Codex 建立資料夾與文件結構。此步驟不用提示詞。&quot;,
+          prompt: &quot;&quot;,
         },
         {
           id: &quot;requirements&quot;,
@@ -1270,13 +1263,15 @@ html&gt;body{padding:0}&lt;/style&gt;
           push: &quot;你只知道大方向，還說不清楚用戶、痛點、場景與功能。&quot;,
           materials: [&quot;App 名稱或暫定名稱&quot;, &quot;初步想法&quot;, &quot;已知的使用對象或情境&quot;],
           result: &quot;使用者需求、使用場景、功能方向、限制條件與可確認的需求文件。&quot;,
-          prompt: `請用一問一答收集我想要做的應用的需求
-每次只輸出1個問題，等我回復再問下一個，禁止一次性輸出大量問題
-提問覆蓋：目標用戶、真實痛點、使用場景、需要的功能、不要的功能、運行設備、參考產品、特殊限制
-我回答模糊就追問細節，訊息足夠之後，輸出一份結構畫完整需求文檔給我確認
+          prompt: `請使用 grill-me skill，先用一問一答的方式整理我的初步想法。
 
-我準備做一個應用：__________________
-我目前的初步想法：__________________
+每次只問我 1 個問題，等我回答後再問下一個；請釐清目標使用者、痛點、使用場景、核心功能、不要做的功能、運行設備、參考產品、資料保存方式與限制條件。
+
+當我的想法足夠清楚後，請先輸出完整需求摘要與專案名稱，等我確認。
+
+確認後，請幫我在指定位置建立專案資料夾，並規劃文件存放結構；建立前先確認資料夾路徑，不要自行選擇位置。
+
+我準備做的應用：[填寫初步想法]
 
 現在直接開始`,
         },
@@ -1541,6 +1536,24 @@ Mermaid流程圖直接輸出代碼快；
         if (!step) return;
         selectedId = step.id;
         const phase = phases.find((item) =&gt; item.id === step.phase);
+        const promptMarkup = step.prompt
+          ? `
+          &lt;div class=&quot;detail-prompt&quot;&gt;
+            &lt;h3&gt;${step.id === &quot;prep&quot; ? &quot;本步驟提示詞（可複製）&quot; : &quot;原文提示詞（可複製）&quot;}&lt;/h3&gt;
+            &lt;textarea id=&quot;prompt-text&quot; class=&quot;form-control&quot; rows=&quot;8&quot; readonly aria-label=&quot;${escapeHtml(step.name)}的可直接使用提示詞&quot;&gt;${escapeHtml(step.prompt)}&lt;/textarea&gt;
+            &lt;div class=&quot;prompt-actions&quot;&gt;
+              &lt;button id=&quot;copy-prompt&quot; class=&quot;btn btn-primary&quot; type=&quot;button&quot;&gt;
+                &lt;i data-lucide=&quot;copy&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+                複製提示詞
+              &lt;/button&gt;
+              &lt;span id=&quot;copy-status&quot; class=&quot;copy-status text-small&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;`
+          : `
+          &lt;div class=&quot;detail-section detail-prep-action&quot;&gt;
+            &lt;h3&gt;預備動作&lt;/h3&gt;
+            &lt;p&gt;${escapeHtml(step.prepAction ?? &quot;先完成本步驟準備，再進入下一步。&quot;)}&lt;/p&gt;
+          &lt;/div&gt;`;
         detail.innerHTML = `
           &lt;div class=&quot;detail-title&quot;&gt;
             &lt;div&gt;
@@ -1566,17 +1579,7 @@ Mermaid流程圖直接輸出代碼快；
             &lt;h3&gt;最後拿到&lt;/h3&gt;
             &lt;p&gt;${escapeHtml(step.result)}&lt;/p&gt;
           &lt;/div&gt;
-          &lt;div class=&quot;detail-prompt&quot;&gt;
-            &lt;h3&gt;${step.id === &quot;prep&quot; ? &quot;本步驟提示詞（可複製）&quot; : &quot;原文提示詞（可複製）&quot;}&lt;/h3&gt;
-            &lt;textarea id=&quot;prompt-text&quot; class=&quot;form-control&quot; rows=&quot;8&quot; readonly aria-label=&quot;${escapeHtml(step.name)}的可直接使用提示詞&quot;&gt;${escapeHtml(step.prompt)}&lt;/textarea&gt;
-            &lt;div class=&quot;prompt-actions&quot;&gt;
-              &lt;button id=&quot;copy-prompt&quot; class=&quot;btn btn-primary&quot; type=&quot;button&quot;&gt;
-                &lt;i data-lucide=&quot;copy&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-                複製提示詞
-              &lt;/button&gt;
-              &lt;span id=&quot;copy-status&quot; class=&quot;copy-status text-small&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
+          ${promptMarkup}
         `;
         globalThis.lucide?.createIcons?.({ attrs: { width: 16, height: 16 } });
       };
