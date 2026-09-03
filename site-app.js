@@ -48,6 +48,8 @@
 
   const tenStageFlow = () => `<figure class="flowchart-figure"><div class="flowchart-viewport"><img class="flowchart-image" src="assets/ai-development-flow.png" alt="0 基礎 AI 開發地圖：分成三個階段，從專案準備、需求收集、功能清單與產品需求文件，進入產品原型、UI 設計、技術文件與開發計畫，再完成產品開發、驗收、發布與使用。" /></div></figure>`;
 
+  const prepGuide = () => `<section class="prep-guide" aria-labelledby="prep-guide-title"><header class="prep-guide-head"><span>開始前準備</span><h3 id="prep-guide-title">${escapeHtml(data.prepGuide.title)}</h3><p>${escapeHtml(data.prepGuide.lead)}</p></header><div class="prep-guide-grid">${data.prepGuide.sections.map((section) => `<article class="prep-guide-section"><h4>${escapeHtml(section.title)}</h4>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}${section.bullets ? `<ul>${section.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>` : ""}${section.warning ? `<div class="prep-warning">${escapeHtml(section.warning)}</div>` : ""}</article>`).join("")}</div></section>`;
+
   const processCard = (item) => `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
@@ -59,10 +61,10 @@
         <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
         <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
       </div>
-      <div class="process-card-foot">
+      ${item.step === "0" ? prepGuide() : `<div class="process-card-foot">
         <span class="prompt-state">${item.promptAvailable ? "提示詞：請開啟完整互動地圖複製" : "預備動作：先確認專案資料夾位置，不使用提示詞"}</span>
         <a class="map-link" href="${data.fullMapUrl}">${item.promptAvailable ? "查看並複製提示詞 →" : "查看完整流程 →"}</a>
-      </div>
+      </div>`}
     </article>`;
 
   const overview = () => `
@@ -75,7 +77,7 @@
 
   const sectionPage = () => {
     const items = data.items.filter((item) => item.section === currentId);
-    return `<div class="content"><section class="section-hero"><p class="eyebrow">第 ${currentSection.number} 步驟</p><h1>${escapeHtml(currentSection.label)}</h1><p>${escapeHtml(currentSection.short)}。本頁集中呈現此階段的流程、輸入資料與交付結果。</p><div class="section-meta"><span class="meta-pill">${items.length} 個流程</span><span class="meta-pill">獨立網頁</span><span class="meta-pill">可回到完整互動地圖</span></div></section><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section><div class="notice">本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。</div></div>`;
+    return `<div class="content"><section class="section-hero"><p class="eyebrow">第 ${currentSection.number} 步驟</p><h1>${escapeHtml(currentSection.label)}</h1><p>${escapeHtml(currentSection.short)}。本頁集中呈現此階段的流程、輸入資料與交付結果。</p></section><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section><div class="notice">本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。</div></div>`;
   };
 
   root.innerHTML = `<div class="site-shell">${sidebar()}<div class="site-main">${header()}<main>${currentId === "overview" ? overview() : sectionPage()}</main></div></div>`;
