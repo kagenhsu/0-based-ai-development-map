@@ -14,6 +14,12 @@
   const currentSection = data.sections.find((section) => section.id === currentId);
   const itemCount = (sectionId) => data.items.filter((item) => item.section === sectionId).length;
 
+  const itemForStep = (step) => data.items.find((item) => item.step === step);
+  const itemHref = (item) => {
+    const section = data.sections.find((entry) => entry.id === item.section);
+    return `${section.page}#step-${item.step}`;
+  };
+
   const sidebar = () => `
     <aside class="site-sidebar" aria-label="主要導覽">
       <a class="brand" href="index.html">
@@ -25,12 +31,13 @@
         <a class="nav-link" href="index.html" aria-current="${currentId === "overview" ? "page" : "false"}">
           <span class="nav-number">00</span><span class="nav-copy"><strong>首頁總覽</strong><small>查看完整流程</small></span>
         </a>
-        ${data.sections.map((section) => `
-          <a class="nav-link" href="${section.page}" aria-current="${currentId === section.id ? "page" : "false"}">
-            <span class="nav-number">${section.number}</span><span class="nav-copy"><strong>${escapeHtml(section.label)}</strong><small>${escapeHtml(section.short)} · ${itemCount(section.id)} 個流程</small></span>
-          </a>`).join("")}
+        ${data.flowStages.map((stage) => {
+          const isCurrentStage = stage.steps.some((step) => itemForStep(step)?.section === currentId);
+          const isOpen = currentId === "overview" ? stage.id === "stage-1" : isCurrentStage;
+          return `<div class="nav-group"><button class="nav-group-toggle" type="button" aria-expanded="${isOpen}" aria-controls="${stage.id}-submenu"><span class="nav-number">${escapeHtml(stage.number)}</span><span class="nav-group-copy"><strong>${escapeHtml(stage.title)}｜${escapeHtml(stage.label)}</strong><small>${escapeHtml(stage.description)}</small></span><span class="nav-chevron" aria-hidden="true">⌄</span></button><div class="nav-submenu" id="${stage.id}-submenu"${isOpen ? "" : " hidden"}>${stage.steps.map((step) => { const item = itemForStep(step); return item ? `<a class="nav-sub-link" href="${itemHref(item)}" aria-current="${item.section === currentId ? "page" : "false"}"><span>第 ${escapeHtml(item.step)} 步</span><strong>${escapeHtml(item.name)}</strong></a>` : ""; }).join("")}</div></div>`;
+        }).join("")}
       </nav>
-      <p class="sidebar-foot">先確認方向，再進入下一階段。每個階段都可獨立查看與交付。</p>
+      <p class="sidebar-foot">點選階段名稱展開子流程；每個階段都可獨立查看與交付。</p>
     </aside>`;
 
   const header = () => `
@@ -42,7 +49,7 @@
   const tenStageFlow = () => `<figure class="flowchart-figure"><div class="flowchart-viewport"><img class="flowchart-image" src="assets/ai-development-flow.png" alt="0 基礎 AI 開發地圖：分成三個階段，從專案準備、需求收集、功能清單與產品需求文件，進入產品原型、UI 設計、技術文件與開發計畫，再完成產品開發、驗收、發布與使用。" /></div><figcaption class="flowchart-caption">流程圖先看階段，再看細節；需要操作時，可從下方或側邊欄進入對應頁面。</figcaption><nav class="flowchart-shortcuts" aria-label="流程階段快速導覽">${data.sections.map((section) => `<a href="${section.page}">${escapeHtml(section.number)} ${escapeHtml(section.label)} →</a>`).join("")}</nav></figure>`;
 
   const processCard = (item) => `
-    <article class="process-card">
+    <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(item.name)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
         <span class="process-badge">${item.promptAvailable ? "含提示詞" : "預備動作"}</span>
@@ -72,4 +79,17 @@
   };
 
   root.innerHTML = `<div class="site-shell">${sidebar()}<div class="site-main">${header()}<main>${currentId === "overview" ? overview() : sectionPage()}</main></div></div>`;
+  document.querySelectorAll(".nav-group-toggle").forEach((button) => {
+    button.addEventListener("click", () => {
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!expanded));
+      document.getElementById(button.getAttribute("aria-controls")).hidden = expanded;
+    });
+  });
+  const sidebarElement = document.querySelector(".site-sidebar");
+  if (sidebarElement && "ResizeObserver" in window) {
+    const syncMobileHeaderOffset = () => document.documentElement.style.setProperty("--site-mobile-sidebar-height", `${sidebarElement.offsetHeight}px`);
+    syncMobileHeaderOffset();
+    new ResizeObserver(syncMobileHeaderOffset).observe(sidebarElement);
+  }
 })();

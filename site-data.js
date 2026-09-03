@@ -16,6 +16,11 @@ globalThis.AI_MAP_DATA = {
     { id: "build", number: "04", label: "技術與開發", short: "規劃、開發與測試", page: "step-4-technology-development.html" },
     { id: "release", number: "05", label: "驗收與發布", short: "確認版本並使用", page: "step-5-acceptance-release.html" }
   ],
+  flowStages: [
+    { id: "stage-1", number: "01", title: "第一階段", label: "想法與需求", description: "把想法說清楚", steps: ["0", "1", "2", "3"] },
+    { id: "stage-2", number: "02", title: "第二階段", label: "原型與技術", description: "把規格變成施工圖", steps: ["4", "5", "6", "7"] },
+    { id: "stage-3", number: "03", title: "第三階段", label: "開發、驗收與發布", description: "做出、驗收並發布", steps: ["8", "9", "10"] }
+  ],
   items: [
     { id: "prep", step: "0", section: "prep", name: "建立 AI 工作空間", purpose: "先確認專案資料夾要放在哪裡", push: "準備開始專案，但還沒有決定資料夾要放在哪裡。", materials: ["專案名稱或暫定名稱", "希望存放的磁碟與資料夾位置", "是否需要同步雲端或版本庫（可選）"], result: "確認的專案資料夾路徑，以及後續文件的存放位置。", promptAvailable: false },
     { id: "requirements", step: "1", section: "product", name: "需求收集", purpose: "把模糊想法問清楚", push: "只知道大方向，還說不清楚用戶、痛點、場景與功能。", materials: ["App 名稱或暫定名稱", "初步想法", "已知的使用對象或情境"], result: "使用者需求、使用場景、功能方向、限制條件與可確認的需求文件。", promptAvailable: true },

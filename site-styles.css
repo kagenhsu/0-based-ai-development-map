@@ -36,6 +36,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .nav-link { display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: 8px; min-height: 52px; padding: 7px 10px; border: 1px solid transparent; border-radius: 14px; }
 .nav-link:hover { background: var(--site-surface-soft); }
 .nav-link[aria-current="page"] { border-color: #cfe4fb; background: var(--site-blue-soft); }
+.nav-group { display: grid; gap: 4px; }
+.nav-group-toggle { display: grid; grid-template-columns: 34px minmax(0, 1fr) 20px; align-items: center; gap: 8px; width: 100%; min-height: 52px; padding: 7px 10px; border: 1px solid transparent; border-radius: 14px; color: var(--site-text); background: transparent; font: inherit; text-align: left; cursor: pointer; }
+.nav-group-toggle:hover, .nav-group-toggle[aria-expanded="true"] { border-color: var(--site-line); background: var(--site-surface-soft); }
+.nav-group-copy { display: grid; gap: 2px; min-width: 0; }
+.nav-group-copy strong { overflow-wrap: anywhere; font-size: 13px; }
+.nav-group-copy small { color: var(--site-muted); font-size: 11px; }
+.nav-chevron { color: var(--site-blue); font-size: 18px; line-height: 1; text-align: center; transition: transform 180ms ease; }
+.nav-group-toggle[aria-expanded="true"] .nav-chevron { transform: rotate(180deg); }
+.nav-submenu { display: grid; gap: 3px; margin-left: 42px; padding-left: 10px; border-left: 1px solid var(--site-line); }
+.nav-submenu[hidden] { display: none; }
+.nav-sub-link { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 6px; align-items: center; min-height: 34px; padding: 6px 9px; border-radius: 10px; color: var(--site-muted); font-size: 11px; }
+.nav-sub-link:hover { color: var(--site-blue); background: var(--site-blue-soft); }
+.nav-sub-link[aria-current="page"] { color: var(--site-blue); background: var(--site-blue-soft); font-weight: 700; }
+.nav-sub-link strong { overflow-wrap: anywhere; font-size: 12px; }
 .nav-number { color: var(--site-blue); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; font-weight: 700; }
 .nav-copy { display: grid; gap: 2px; min-width: 0; }
 .nav-copy strong { overflow-wrap: anywhere; font-size: 13px; }
@@ -129,8 +143,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .site-sidebar { position: sticky; inset: auto; width: auto; height: auto; min-height: auto; overflow: visible; padding: 14px 14px 10px; border-right: 0; border-bottom: 1px solid var(--site-line); box-shadow: 0 8px 24px rgba(29, 29, 31, 0.05); }
   .brand { padding: 0 4px 12px; }
   .nav-label, .sidebar-foot { display: none; }
-  .site-nav { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 4px; }
-  .nav-link { flex: 0 0 auto; grid-template-columns: auto; min-height: 42px; padding: 7px 10px; }
+  .site-nav { display: grid; gap: 4px; padding-bottom: 4px; }
+  .nav-link, .nav-group-toggle { min-height: 42px; padding: 7px 10px; }
+  .nav-group-toggle { grid-template-columns: 28px minmax(0, 1fr) 20px; }
+  .nav-submenu { margin-left: 28px; }
   .nav-copy small { display: none; }
   .nav-copy strong { font-size: 12px; white-space: nowrap; }
   .site-main { margin-left: 0; padding-top: 0; }
