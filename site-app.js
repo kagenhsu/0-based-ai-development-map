@@ -131,7 +131,7 @@
     return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。</div></div>`;
   };
 
-  root.innerHTML = `<div class="site-shell">${sidebar()}<div class="site-main">${header()}<main>${currentId === "overview" ? overview() : sectionPage()}</main></div></div>`;
+  root.innerHTML = `<div class="site-shell">${sidebar()}<div class="site-main">${header()}<main>${currentId === "overview" ? overview() : sectionPage()}</main></div></div><button class="back-to-top" type="button" aria-label="回到網頁內容最頂端" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6" /></svg><span>回到頂端</span></button>`;
   document.querySelectorAll(".nav-group-toggle").forEach((button) => {
     button.addEventListener("click", () => {
       const expanded = button.getAttribute("aria-expanded") === "true";
@@ -150,6 +150,18 @@
     });
   };
   window.addEventListener("hashchange", syncCurrentChild);
+  const backToTopButton = document.querySelector(".back-to-top");
+  if (backToTopButton) {
+    const syncBackToTop = () => {
+      const visible = window.scrollY > 360;
+      backToTopButton.classList.toggle("is-visible", visible);
+      backToTopButton.setAttribute("aria-hidden", String(!visible));
+      backToTopButton.tabIndex = visible ? 0 : -1;
+    };
+    backToTopButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }));
+    window.addEventListener("scroll", syncBackToTop, { passive: true });
+    syncBackToTop();
+  }
   const sidebarElement = document.querySelector(".site-sidebar");
   const headerElement = document.querySelector(".site-header");
   if (sidebarElement && headerElement && "ResizeObserver" in window) {
