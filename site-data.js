@@ -426,6 +426,49 @@ Mermaid流程圖直接輸出代碼快；
     ],
     closing: "把開發計畫確認後，就能照著依賴順序逐項執行；每個任務都有負責角色、前置條件與驗收結果。"
   },
+  productDevelopmentGuide: {
+    title: "第八步：產品開發（編碼）",
+    lead: "文件與計畫確認完成後，讓 AI 依模組順序進行開發、測試與逐項回報。",
+    intro: [
+      "這個階段開始把 PRD、原型、UI、TRD 與開發計畫轉成可運作的程式。開工前先做文件交叉校驗，發現衝突或缺失時先確認，不要直接猜測。",
+      "確認後依開發計畫逐項執行；每完成一個模組就回報交付內容與測試結果，等你驗收後再進入下一個模組。"
+    ],
+    skill: {
+      command: "/superpower",
+      name: "Superpower skill",
+      description: "用於強化規劃、執行與驗證流程；使用前請先確認目前工具已安裝並支援此呼叫名稱。"
+    },
+    flow: [
+      { number: "01", title: "文件交叉校驗", description: "列出衝突、缺失與疑問" },
+      { number: "02", title: "確認後開工", description: "先確認範圍與開發順序" },
+      { number: "03", title: "逐模組編碼", description: "不私自增加產品功能" },
+      { number: "04", title: "同步測試", description: "測試對齊 PRD 驗收標準" },
+      { number: "05", title: "完成即回報", description: "一次通知一個模組成果" }
+    ],
+    rules: [
+      "先校驗 PRD、原型、UI、TRD 與開發計畫",
+      "發現衝突或缺失先列清單並等待確認",
+      "嚴格依照模組順序與優先級開發",
+      "每個模組同時完成程式、測試與自我核對",
+      "資訊不足直接提問，不腦補需求"
+    ],
+    prompt: `/superpower
+
+你是開發+測試全端工程師，依照產品需求文檔PRD、產品原型、UI設計、TRD、開發計畫做開發與測試工作
+1.先對文檔交叉進行校驗，輸出衝突、缺失疑問清單，確認後開工
+2.嚴格按照開發計畫模組順序&優先開發，不私自增加功能
+3.每個模組同時輸出：數據庫、業務接口代碼、單完測試代碼、接口測試用例、自側核對清單
+4.測試用例對齊PRD驗收標準，可直接用於提測
+5.訊息不足直接提問，禁止腦補需求`,
+    deliverables: [
+      { title: "數據庫", description: "資料結構與必要變更" },
+      { title: "業務接口代碼", description: "依 TRD 完成模組接口" },
+      { title: "單元測試代碼", description: "驗證模組核心邏輯" },
+      { title: "接口測試用例", description: "覆蓋正常與異常情境" },
+      { title: "自我核對清單", description: "對照 PRD 驗收標準" }
+    ],
+    closing: "AI 完成一個模組後應先通知你，提供程式、測試與核對結果；驗收通過後，再依開發計畫進入下一個模組。"
+  },
   sections: [
     { id: "prep", number: "01", label: "專案準備", short: "確認專案位置", page: "step-1-project-preparation.html" },
     { id: "product", number: "02", label: "產品定義", short: "釐清需求與功能", page: "step-2-product-definition.html" },

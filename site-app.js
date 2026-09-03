@@ -261,7 +261,29 @@
     </article>`;
   };
 
-  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : item.step === "5" ? uiGuideCard(item) : item.step === "6" ? trdGuideCard(item) : item.step === "7" ? developmentPlanGuideCard(item) : `
+  const productDevelopmentGuideCard = (item) => {
+    const guide = data.productDevelopmentGuide;
+    return `<article class="process-card requirements-card product-development-card" id="step-${escapeHtml(item.step)}">
+      <div class="process-card-head">
+        <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
+        <span class="process-badge">開發＋測試</span>
+      </div>
+      <div class="process-details">
+        <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
+        <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
+        <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
+      </div>
+      <section class="requirements-intro"><span>正式進入編碼</span><h3>${escapeHtml(guide.lead)}</h3>${guide.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <section class="development-skill" aria-labelledby="development-skill-title"><div><span>本步驟搭配技能</span><h3 id="development-skill-title">${escapeHtml(guide.skill.name)}</h3><p>${escapeHtml(guide.skill.description)}</p></div><code>${escapeHtml(guide.skill.command)}</code></section>
+      <section class="development-flow" aria-labelledby="development-flow-title"><div class="requirements-section-head"><div><span>執行節奏</span><h3 id="development-flow-title">校驗、開發、測試、回報</h3></div></div><div class="development-flow-list">${guide.flow.map((entry, index) => `<article><span>${escapeHtml(entry.number)}</span><strong>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.description)}</p></article>${index < guide.flow.length - 1 ? `<span class="development-flow-arrow" aria-hidden="true">→</span>` : ""}`).join("")}</div></section>
+      <section class="development-rules" aria-labelledby="development-rules-title"><div class="requirements-section-head"><div><span>開工規則</span><h3 id="development-rules-title">五項執行邊界</h3></div></div><ol>${guide.rules.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("")}</ol></section>
+      <section class="requirements-prompt" aria-labelledby="development-prompt-title"><div class="requirements-section-head"><div><span>可直接使用</span><h3 id="development-prompt-title">產品開發原文提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="productDevelopmentGuide">複製提示詞</button></div><pre><code>${escapeHtml(guide.prompt)}</code></pre></section>
+      <section class="development-deliverables" aria-labelledby="development-deliverables-title"><div class="requirements-section-head"><div><span>每個模組都要交付</span><h3 id="development-deliverables-title">五項同步產物</h3></div></div><div>${guide.deliverables.map((entry, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.description)}</p></article>`).join("")}</div></section>
+      <section class="requirements-complete"><span>完成一個，通知一次</span><strong>每個模組先驗收，再進入下一個</strong><p>${escapeHtml(guide.closing)}</p></section>
+    </article>`;
+  };
+
+  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : item.step === "5" ? uiGuideCard(item) : item.step === "6" ? trdGuideCard(item) : item.step === "7" ? developmentPlanGuideCard(item) : item.step === "8" ? productDevelopmentGuideCard(item) : `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(item.name)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
@@ -291,7 +313,7 @@
     const selectedItem = sectionItems.find((item) => item.step === currentStep);
     const items = selectedItem ? [selectedItem] : sectionItems.slice(0, 1);
     const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
-    const notice = ["1", "2", "3", "4", "5", "6", "7"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
+    const notice = ["1", "2", "3", "4", "5", "6", "7", "8"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
     return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">${escapeHtml(notice)}</div></div>`;
   };
 
