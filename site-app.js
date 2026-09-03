@@ -146,7 +146,7 @@
     return `<article class="process-card requirements-card prd-guide-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
-        <span class="process-badge">含 2 組提示詞</span>
+        <span class="process-badge">含 3 組提示詞</span>
       </div>
       <div class="process-details">
         <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
@@ -161,6 +161,7 @@
         <section class="requirements-method requirements-result"><span class="requirements-number">02</span><div><h3>同步更新關聯規則</h3><p>${escapeHtml(guide.correctionResult)}</p><p>不要只接受局部修正，要取得整合後的完整文件。</p></div></section>
       </div>
       <section class="prd-correction"><div class="requirements-section-head"><div><span>修改示例</span><h3>食物描述增加圖片</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="prdGuide" data-copy-field="correctionPrompt">複製修正提示詞</button></div><p>${escapeHtml(guide.correctionPrompt)}</p></section>
+      <section class="requirements-prompt" aria-labelledby="prd-detail-revision-prompt-title"><div class="requirements-section-head"><div><span>修改 PRD 細節時使用</span><h3 id="prd-detail-revision-prompt-title">PRD 細節修改提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="prdGuide" data-copy-field="detailRevisionPrompt">複製修改提示詞</button></div><pre><code>${escapeHtml(guide.detailRevisionPrompt)}</code></pre></section>
       <div class="prd-review-note"><strong>確認邊界</strong><p>AI 自動補全的內容仍是草稿；若涉及資料保存、權限、費用或業務規則，請標示為待確認後再定稿。</p></div>
       <section class="requirements-complete"><span>PRD 完成</span><strong>取得完整產品需求文檔</strong><p>${escapeHtml(guide.closing)}</p><p>${escapeHtml(guide.note)}</p></section>
     </article>`;
