@@ -60,7 +60,20 @@
 
   const tenStageFlow = () => `<figure class="flowchart-figure"><div class="flowchart-viewport"><img class="flowchart-image" src="assets/ai-development-flow.png" alt="0 基礎 AI 開發地圖：分成三個階段，從專案準備、需求收集、功能清單與產品需求文件，進入產品原型、UI 設計、技術文件與開發計畫，再完成產品開發、驗收、發布與使用。" /></div></figure>`;
 
-  const prepGuide = () => `<section class="prep-guide" aria-labelledby="prep-guide-title"><header class="prep-guide-head"><span>開始前準備</span><h3 id="prep-guide-title">${escapeHtml(data.prepGuide.title)}</h3><p>${escapeHtml(data.prepGuide.lead)}</p></header><div class="prep-guide-grid">${data.prepGuide.sections.map((section) => `<article class="prep-guide-section"><h4>${escapeHtml(section.title)}</h4>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}${section.bullets ? `<ul>${section.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>` : ""}${section.warning ? `<div class="prep-warning">${escapeHtml(section.warning)}</div>` : ""}</article>`).join("")}</div></section>`;
+  const assistantComparison = () => `<div class="guide-table-wrap"><table class="guide-table guide-table-assistants"><caption>AI 開發助手分析表</caption><thead><tr><th>工具</th><th>產品型態</th><th>適合誰</th><th>主要能力</th><th>準備與注意</th><th>官方資料</th></tr></thead><tbody>${data.prepGuide.assistantComparison.map((tool) => `<tr><th scope="row">${escapeHtml(tool.name)}</th><td>${escapeHtml(tool.form)}</td><td>${escapeHtml(tool.fit)}</td><td>${escapeHtml(tool.strengths)}</td><td>${escapeHtml(tool.setup)}<small>${escapeHtml(tool.note)}</small></td><td>${tool.sourceUrl ? `<a href="${escapeHtml(tool.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(tool.source)} ↗</a>` : `<span class="pending-label">${escapeHtml(tool.source)}</span>`}</td></tr>`).join("")}</tbody></table></div>`;
+
+  const modelTaskMatrix = () => `<div class="guide-table-wrap"><table class="guide-table"><caption>高階模型與性價比模型任務分工</caption><thead><tr><th>任務</th><th>建議層級</th><th>原因</th><th>常見例子</th></tr></thead><tbody>${data.prepGuide.modelTaskMatrix.map((row) => `<tr><th scope="row">${escapeHtml(row.task)}</th><td><span class="tier-label">${escapeHtml(row.tier)}</span></td><td>${escapeHtml(row.reason)}</td><td>${escapeHtml(row.examples)}</td></tr>`).join("")}</tbody></table></div>`;
+
+  const capabilityChecklist = () => `<div class="capability-chart" aria-label="模型能力使用檢查圖表">${data.prepGuide.capabilityChecklist.map((row) => `<article class="capability-row"><div><strong>${escapeHtml(row.use)}</strong><span>${escapeHtml(row.need)}</span></div><p>${escapeHtml(row.check)}</p><span class="capability-level" data-level="${escapeHtml(row.level)}">${escapeHtml(row.level)}</span></article>`).join("")}</div>`;
+
+  const prepGuideExtra = (section) => {
+    if (section.kind === "assistant-comparison") return assistantComparison();
+    if (section.kind === "model-task-matrix") return modelTaskMatrix();
+    if (section.kind === "capability-checklist") return capabilityChecklist();
+    return "";
+  };
+
+  const prepGuide = () => `<section class="prep-guide" aria-labelledby="prep-guide-title"><header class="prep-guide-head"><span>開始前準備</span><h3 id="prep-guide-title">${escapeHtml(data.prepGuide.title)}</h3><p>${escapeHtml(data.prepGuide.lead)}</p></header><div class="prep-guide-grid">${data.prepGuide.sections.map((section) => `<article class="prep-guide-section"><h4>${escapeHtml(section.title)}</h4>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}${section.bullets ? `<ul>${section.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>` : ""}${section.image ? `<figure class="guide-visual"><img src="${escapeHtml(section.image.src)}" alt="${escapeHtml(section.image.alt)}" loading="lazy" /></figure>` : ""}${prepGuideExtra(section)}${section.warning ? `<div class="prep-warning">${escapeHtml(section.warning)}</div>` : ""}</article>`).join("")}</div></section>`;
 
   const processCard = (item) => `
     <article class="process-card" id="step-${escapeHtml(item.step)}">

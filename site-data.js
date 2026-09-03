@@ -15,10 +15,11 @@ globalThis.AI_MAP_DATA = {
     sections: [
       {
         title: "1｜選擇 AI 開發助手",
+        kind: "assistant-comparison",
         paragraphs: [
-          "不論是國外的 Claude、Codex，國內的 WorkBody、Coder、Trae，還是豆包、千問，都可以使用。",
+          "不論是國外的 Claude Code、Codex，或 CodeBuddy、WorkBuddy、TRAE、豆包、千問等工具，都可以依任務選用。",
           "如果從來沒有用過，中國地區可先選擇安裝與操作較簡單的國產辦公智能體；台灣可使用 Claude Code 或 Codex。",
-          "原稿示範使用 WorkBody，但後續操作也能在其他工具中找到對應功能。"
+          "原稿的 WorkBody 經官方資料核對後校正為 WorkBuddy；「Coder」無法確認是指哪一項產品，先列為待確認。"
         ],
         bullets: [
           "安裝後即可使用，減少網路或服務限制",
@@ -30,6 +31,10 @@ globalThis.AI_MAP_DATA = {
       },
       {
         title: "2｜替智能體選擇大模型",
+        image: {
+          src: "assets/model-routing-guide.png",
+          alt: "高低模型搭配：高階模型決定方向，性價比模型負責大量執行，不確定時可使用自動模式。"
+        },
         paragraphs: [
           "選完工具後，還要替智能體選一個負責思考的「大腦」——大模型。",
           "省錢的關鍵技巧是高低搭配：重要決策使用能力較高的旗艦模型，大量重複工作使用性價比較高的模型。",
@@ -38,6 +43,7 @@ globalThis.AI_MAP_DATA = {
       },
       {
         title: "3｜旗艦模型負責方向",
+        kind: "model-task-matrix",
         paragraphs: [
           "設計整體架構、撰寫需求文件等全局性、核心、重要或複雜的任務，適合使用旗艦模型。",
           "這些任務工作量通常不大、Token 用量較少；先把方向與結構定好，後面的設計與開發才有意義。",
@@ -47,6 +53,10 @@ globalThis.AI_MAP_DATA = {
       },
       {
         title: "4｜性價比模型負責大量執行",
+        image: {
+          src: "assets/execution-model-guide.png",
+          alt: "性價比模型從已確認規格、頁面程式碼、測試與修正，逐步產出可驗收版本。"
+        },
         paragraphs: [
           "撰寫具體頁面程式碼等局部性、非核心、次要或較簡單的重複任務，適合使用單價較低的模型。",
           "這類任務本身不一定複雜，但工作量大、需要大量 Token，應優先控制成本。",
@@ -55,20 +65,51 @@ globalThis.AI_MAP_DATA = {
       },
       {
         title: "5｜模型能力提醒",
+        kind: "capability-checklist",
         paragraphs: [
-          "原稿將 DeepSeek V4 列為性價比選項，並提醒它不支援圖片輸入；如果要傳送圖片或截圖給 AI 查看，使用前仍須確認官方最新能力。",
-          "原稿提到混元 3（Hy3）限時免費，較適合簡單任務；複雜任務仍應選擇能力較高的模型。"
+          "原稿曾以 DeepSeek V4 與混元 3（Hy3）說明價格、圖片輸入與任務難度，但這些名稱與能力屬於待確認的原稿資訊，不作為目前版本的選型結論。",
+          "實際選擇時，先依工作內容確認是否需要圖片輸入、本機檔案、網路搜尋、長期工作空間與企業資料保護，再用小任務測試。"
         ],
         warning: "免費方案、圖片輸入與模型能力會變動，以上內容須以官方最新說明為準。"
       },
       {
         title: "6｜建立本機工作空間",
+        image: {
+          src: "assets/workspace-setup-guide.png",
+          alt: "建立專案資料夾、在智能體打開本機資料夾，集中存放文件、程式與測試，開始新任務時先選工作空間。"
+        },
         paragraphs: [
           "在電腦上建立一個專案資料夾，例如「健身減肥日記」。",
           "在智能體中建立工作空間，選擇「打開本機資料夾」並指向這個資料夾。以後此專案的文件、程式與測試資料都放在這裡，查找與維護會更方便。",
           "開始新任務時，記得先選擇這個工作空間。"
         ]
       }
+    ],
+    assistantComparison: [
+      { name: "Codex", form: "桌面 App／CLI／雲端", fit: "Windows 新手、完整專案開發", strengths: "讀寫專案、執行命令、圖片輸入、平行任務", setup: "登入 OpenAI；依版本確認方案與網路", note: "適合從規劃一路維護到測試", source: "OpenAI 官方", sourceUrl: "https://openai.com/codex/" },
+      { name: "Claude Code", form: "終端機／IDE", fit: "複雜程式庫、開發者工作流", strengths: "理解程式庫、修改檔案、執行命令、MCP", setup: "安裝並登入；Windows 須符合官方環境需求", note: "較適合願意使用終端機者", source: "Anthropic 官方", sourceUrl: "https://docs.anthropic.com/en/docs/claude-code/getting-started" },
+      { name: "CodeBuddy", form: "IDE／插件／CLI", fit: "零基礎、產品到部署流程", strengths: "需求、設計、開發、測試與部署整合", setup: "下載 IDE、插件或安裝 CLI", note: "使用前確認地區、帳號與資料政策", source: "騰訊雲官方", sourceUrl: "https://cloud.tencent.com/product/acc" },
+      { name: "TRAE", form: "AI IDE", fit: "偏好圖形介面的新手與開發者", strengths: "程式問答、專案理解、生成、修復與優化", setup: "下載 IDE 並登入", note: "使用前確認地區與隱私設定", source: "TRAE 官方", sourceUrl: "https://docs.trae.cn/ide_chat" },
+      { name: "千問／Qwen Code", form: "桌面 App／CLI／開源專案", fit: "需要開源、多模型或進階擴充", strengths: "Skills、Hooks、MCP、沙箱、工作樹", setup: "桌面安裝或 CLI 配置模型驗證", note: "進階功能需要較多設定", source: "Qwen 官方", sourceUrl: "https://github.com/QwenLM/qwen-code" },
+      { name: "WorkBuddy", form: "AI 原生桌面智能體工作台", fit: "辦公流程、日常工作與開發工具切換", strengths: "官方定位為桌面智能體工作台", setup: "依騰訊雲帳號與方案啟用", note: "開發工作可搭配 CodeBuddy", source: "騰訊雲官方", sourceUrl: "https://cloud.tencent.com/announce/detail/2270" },
+      { name: "豆包", form: "對話式 AI 應用", fit: "想法整理、問答與內容草稿", strengths: "以 AI 對話為核心的文字、語音等互動", setup: "使用官方 App 或網站", note: "本機專案操作能力須依實際版本確認", source: "豆包官方", sourceUrl: "https://www.doubao.com/legal/instructions" },
+      { name: "Coder", form: "名稱待確認", fit: "待確認", strengths: "同名產品很多，無法安全比較", setup: "請先提供官方網址或完整產品名", note: "確認前不建議下載或付款", source: "待確認", sourceUrl: "" }
+    ],
+    modelTaskMatrix: [
+      { task: "產品方向與範圍", tier: "高階模型", reason: "會影響整體目標與後續成本", examples: "需求訪談、功能取捨、PRD" },
+      { task: "系統架構與資料安全", tier: "高階模型", reason: "跨模組且錯誤代價較高", examples: "TRD、權限、資料模型、API" },
+      { task: "複雜除錯與程式審查", tier: "高階模型", reason: "需要跨檔案推理與找根因", examples: "疑難錯誤、安全與回歸風險" },
+      { task: "依規格製作頁面", tier: "性價比模型", reason: "方向已確認，主要是大量執行", examples: "HTML、CSS、元件與文案套版" },
+      { task: "測試案例與重複修正", tier: "性價比模型", reason: "工作量大且可用驗收條件核對", examples: "單元測試、格式修正、批次調整" },
+      { task: "跨模組或規格不清的任務", tier: "自動／混合", reason: "先由高階模型拆解，再交付執行", examples: "大型功能、長鏈路改版" }
+    ],
+    capabilityChecklist: [
+      { use: "整理文字需求", need: "文字理解、長上下文", check: "貼一小段需求，確認能否正確摘要", level: "基本" },
+      { use: "看圖片或截圖", need: "圖片輸入／視覺能力", check: "上傳測試截圖，請它指出畫面元素", level: "必查" },
+      { use: "修改本機專案", need: "檔案與命令工具權限", check: "用測試資料夾確認讀檔、改檔與執行", level: "必查" },
+      { use: "查最新官方資料", need: "網路搜尋與來源引用", check: "要求附官方連結與查詢日期", level: "必查" },
+      { use: "長期維護同一專案", need: "工作空間、規則與版本管理", check: "關閉重開後確認仍能找到專案規則", level: "必查" },
+      { use: "處理公司敏感資料", need: "權限、隱私與企業管理", check: "先查官方資料政策；不要上傳機密原文", level: "高風險" }
     ]
   },
   sections: [
