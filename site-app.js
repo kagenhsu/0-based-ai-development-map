@@ -147,7 +147,32 @@
     </article>`;
   };
 
-  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : `
+  const prdGuideCard = (item) => {
+    const guide = data.prdGuide;
+    return `<article class="process-card requirements-card prd-guide-card" id="step-${escapeHtml(item.step)}">
+      <div class="process-card-head">
+        <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
+        <span class="process-badge">含 2 組提示詞</span>
+      </div>
+      <div class="process-details">
+        <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
+        <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
+        <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
+      </div>
+      <section class="requirements-intro"><span>PRD 的作用</span><h3>${escapeHtml(guide.lead)}</h3>${guide.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <section class="prd-operation" aria-labelledby="prd-operation-title"><div class="requirements-section-head"><div><span>先理解差異</span><h3 id="prd-operation-title">從功能清單走向可執行規則</h3></div></div><div class="prd-comparison">${guide.comparison.map((entry, index) => `<article><span>${escapeHtml(entry.name)}</span><strong>${escapeHtml(entry.focus)}</strong><p>${escapeHtml(entry.description)}</p></article>${index === 0 ? `<span class="prd-comparison-arrow" aria-hidden="true">→</span>` : ""}`).join("")}</div><div class="prd-question-grid">${guide.questions.map((question) => `<span>${escapeHtml(question)}</span>`).join("")}</div></section>
+      <section class="requirements-prompt" aria-labelledby="prd-prompt-title"><div class="requirements-section-head"><div><span>可直接使用</span><h3 id="prd-prompt-title">PRD 原文提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="prdGuide">複製提示詞</button></div><pre><code>${escapeHtml(guide.prompt)}</code></pre></section>
+      <div class="requirements-method-grid">
+        <section class="requirements-method"><span class="requirements-number">01</span><div><h3>閱讀與修改</h3>${guide.review.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div></section>
+        <section class="requirements-method requirements-result"><span class="requirements-number">02</span><div><h3>同步更新關聯規則</h3><p>${escapeHtml(guide.correctionResult)}</p><p>不要只接受局部修正，要取得整合後的完整文件。</p></div></section>
+      </div>
+      <section class="prd-correction"><div class="requirements-section-head"><div><span>修改示例</span><h3>食物描述增加圖片</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="prdGuide" data-copy-field="correctionPrompt">複製修正提示詞</button></div><p>${escapeHtml(guide.correctionPrompt)}</p></section>
+      <div class="prd-review-note"><strong>確認邊界</strong><p>AI 自動補全的內容仍是草稿；若涉及資料保存、權限、費用或業務規則，請標示為待確認後再定稿。</p></div>
+      <section class="requirements-complete"><span>PRD 完成</span><strong>取得完整產品需求文檔</strong><p>${escapeHtml(guide.closing)}</p><p>${escapeHtml(guide.note)}</p></section>
+    </article>`;
+  };
+
+  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(item.name)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
@@ -177,20 +202,24 @@
     const selectedItem = sectionItems.find((item) => item.step === currentStep);
     const items = selectedItem ? [selectedItem] : sectionItems.slice(0, 1);
     const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
-    return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。</div></div>`;
+    const notice = ["1", "2", "3"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
+    return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">${escapeHtml(notice)}</div></div>`;
   };
 
   root.innerHTML = `<div class="site-shell">${sidebar()}<div class="site-main">${header()}<main>${currentId === "overview" ? overview() : sectionPage()}</main></div></div><button class="back-to-top" type="button" aria-label="回到網頁內容最頂端" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6" /></svg><span>回到頂端</span></button>`;
   document.querySelectorAll("[data-copy-guide]").forEach((copyButton) => {
+    const defaultCopyLabel = copyButton.textContent;
     copyButton.addEventListener("click", async () => {
       try {
         const guide = data[copyButton.dataset.copyGuide];
-        if (!guide?.prompt) throw new Error("prompt missing");
+        const promptField = copyButton.dataset.copyField || "prompt";
+        const promptText = guide?.[promptField];
+        if (!promptText) throw new Error("prompt missing");
         if (navigator.clipboard?.writeText) {
-          await navigator.clipboard.writeText(guide.prompt);
+          await navigator.clipboard.writeText(promptText);
         } else {
           const textarea = document.createElement("textarea");
-          textarea.value = guide.prompt;
+          textarea.value = promptText;
           textarea.setAttribute("readonly", "");
           textarea.style.position = "fixed";
           textarea.style.opacity = "0";
@@ -201,7 +230,7 @@
           if (!copied) throw new Error("copy failed");
         }
         copyButton.textContent = "已複製";
-        setTimeout(() => { copyButton.textContent = "複製提示詞"; }, 1800);
+        setTimeout(() => { copyButton.textContent = defaultCopyLabel; }, 1800);
       } catch {
         copyButton.textContent = "請手動複製";
       }
