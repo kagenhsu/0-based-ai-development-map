@@ -119,7 +119,7 @@
 
   const overview = () => `
     <div class="content">
-      <section class="hero"><p class="eyebrow">AI DEVELOPMENT WORKFLOW</p><h1>${escapeHtml(data.title)}</h1><p>${escapeHtml(data.subtitle)} 用正式、可交付的方式，把每一個階段拆開管理。</p><div class="hero-actions"><a class="primary-button" href="${data.sections[0].page}">從第 1 步開始</a><a class="secondary-button" href="${data.fullMapUrl}">查看完整互動地圖</a></div></section>
+      <section class="hero"><p class="eyebrow">AI DEVELOPMENT WORKFLOW</p><h1>${escapeHtml(data.title)}</h1><p>${escapeHtml(data.subtitle)} 用正式、可交付的方式，把每一個階段拆開管理。</p></section>
       <section class="home-story" aria-labelledby="story-title"><p class="eyebrow">HOW IT WORKS</p><h2 id="story-title">從一個想法，到可以使用的應用</h2>${storyIconRow()}<div class="home-story-copy">${data.homeStory.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div></section>
       <section class="overview-flow"><div class="section-heading"><div><h2>10 大階段流程圖</h2><p>第 0 步是專案起點；第 1～10 步是核心開發流程</p></div></div>${tenStageFlow()}</section>
       <div class="notice">使用方式：從側邊欄選擇階段；閱讀「適合推、需要提供、最後拿到」，再進入完整互動地圖複製對應提示詞。</div>
