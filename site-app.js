@@ -42,7 +42,7 @@
 
   const header = () => `
     <header class="site-header">
-      <div class="breadcrumb"><span>${currentSection ? `第 ${currentSection.number} 步驟` : "流程首頁"}</span><strong>${escapeHtml(currentSection?.label ?? "AI 開發流程總覽")}</strong></div>
+      <div class="breadcrumb"><span>${currentSection ? `第 ${currentSection.number} 步驟` : "流程首頁"}</span><strong>${escapeHtml(currentSection?.label ?? "AI 開發流程總覽")}</strong><small>${escapeHtml(currentSection?.short ?? "從想法逐步完成可驗收、可使用的版本")}</small></div>
       <div class="header-actions"><a class="header-link" href="${data.fullMapUrl}">開啟完整互動地圖</a></div>
     </header>`;
 
@@ -77,7 +77,7 @@
 
   const sectionPage = () => {
     const items = data.items.filter((item) => item.section === currentId);
-    return `<div class="content"><section class="section-hero"><p class="eyebrow">第 ${currentSection.number} 步驟</p><h1>${escapeHtml(currentSection.label)}</h1><p>${escapeHtml(currentSection.short)}。本頁集中呈現此階段的流程、輸入資料與交付結果。</p></section><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section><div class="notice">本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。</div></div>`;
+    return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section><div class="notice">本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。</div></div>`;
   };
 
   root.innerHTML = `<div class="site-shell">${sidebar()}<div class="site-main">${header()}<main>${currentId === "overview" ? overview() : sectionPage()}</main></div></div>`;
@@ -89,9 +89,16 @@
     });
   });
   const sidebarElement = document.querySelector(".site-sidebar");
-  if (sidebarElement && "ResizeObserver" in window) {
-    const syncMobileHeaderOffset = () => document.documentElement.style.setProperty("--site-mobile-sidebar-height", `${sidebarElement.offsetHeight}px`);
-    syncMobileHeaderOffset();
-    new ResizeObserver(syncMobileHeaderOffset).observe(sidebarElement);
+  const headerElement = document.querySelector(".site-header");
+  if (sidebarElement && headerElement && "ResizeObserver" in window) {
+    const syncLayoutOffsets = () => {
+      document.documentElement.style.setProperty("--site-mobile-sidebar-height", `${sidebarElement.offsetHeight}px`);
+      document.documentElement.style.setProperty("--site-current-header-height", `${headerElement.offsetHeight}px`);
+    };
+    syncLayoutOffsets();
+    const layoutObserver = new ResizeObserver(syncLayoutOffsets);
+    layoutObserver.observe(sidebarElement);
+    layoutObserver.observe(headerElement);
+    if (location.hash) requestAnimationFrame(() => document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: "start" }));
   }
 })();
