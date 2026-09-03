@@ -99,7 +99,30 @@
 
   const prepGuide = () => `<section class="prep-guide" aria-labelledby="prep-guide-title"><header class="prep-guide-head"><span>開始前準備</span><h3 id="prep-guide-title">${escapeHtml(data.prepGuide.title)}</h3><p>${escapeHtml(data.prepGuide.lead)}</p></header>${prepGuideNav()}<div class="prep-guide-grid">${data.prepGuide.sections.map((section, index) => `<article class="prep-guide-section" id="prep-guide-section-${index + 1}"><h4>${escapeHtml(section.title)}</h4>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}${section.bullets ? `<ul>${section.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>` : ""}${section.image ? `<figure class="guide-visual"><img src="${escapeHtml(section.image.src)}" alt="${escapeHtml(section.image.alt)}" loading="lazy" /></figure>` : ""}${prepGuideExtra(section)}${section.warning ? `<div class="prep-warning">${escapeHtml(section.warning)}</div>` : ""}</article>`).join("")}</div></section>`;
 
-  const processCard = (item) => `
+  const requirementsGuideCard = (item) => {
+    const guide = data.requirementsGuide;
+    return `<article class="process-card requirements-card" id="step-${escapeHtml(item.step)}">
+      <div class="process-card-head">
+        <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
+        <span class="process-badge">grill-me skill</span>
+      </div>
+      <div class="process-details">
+        <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
+        <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
+        <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
+      </div>
+      <section class="requirements-intro"><span>為什麼先做需求收集</span><h3>${escapeHtml(guide.lead)}</h3>${guide.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <div class="requirements-method-grid">
+        <section class="requirements-method"><span class="requirements-number">01</span><div><h3>讓 AI 來問你</h3>${guide.method.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div></section>
+        <section class="requirements-method requirements-result"><span class="requirements-number">02</span><div><h3>先確認，再進下一步</h3><p>AI 問完後先閱讀完整需求摘要，補充或修正遺漏，再確認成為正式需求文件。</p><p>需求未確認前，不要直接進入功能設計或開發。</p></div></section>
+      </div>
+      <section class="requirements-prompt" aria-labelledby="requirements-prompt-title"><div class="requirements-section-head"><div><span>可直接使用</span><h3 id="requirements-prompt-title">grill-me 原文提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-requirements>複製提示詞</button></div><pre><code>${escapeHtml(guide.prompt)}</code></pre></section>
+      <section class="requirements-example"><div class="requirements-section-head"><div><span>操作示例</span><h3>健身減肥日記</h3></div></div><div class="requirements-example-input"><div><strong>我準備做的應用</strong><p>${escapeHtml(guide.example.app)}</p></div><div><strong>目前的初步想法</strong><p>${escapeHtml(guide.example.idea)}</p></div></div><h4>AI 會逐步追問</h4><div class="requirements-question-list">${guide.example.questions.map((question) => `<span>${escapeHtml(question)}</span>`).join("")}</div></section>
+      <section class="requirements-complete"><span>最後拿到</span><strong>完整的使用者需求文件</strong><p>${escapeHtml(guide.closing)}</p></section>
+    </article>`;
+  };
+
+  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(item.name)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
@@ -131,6 +154,31 @@
   };
 
   root.innerHTML = `<div class="site-shell">${sidebar()}<div class="site-main">${header()}<main>${currentId === "overview" ? overview() : sectionPage()}</main></div></div><button class="back-to-top" type="button" aria-label="回到網頁內容最頂端" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6" /></svg><span>回到頂端</span></button>`;
+  const requirementsCopyButton = document.querySelector("[data-copy-requirements]");
+  if (requirementsCopyButton) {
+    requirementsCopyButton.addEventListener("click", async () => {
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(data.requirementsGuide.prompt);
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = data.requirementsGuide.prompt;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          const copied = document.execCommand("copy");
+          textarea.remove();
+          if (!copied) throw new Error("copy failed");
+        }
+        requirementsCopyButton.textContent = "已複製";
+        setTimeout(() => { requirementsCopyButton.textContent = "複製提示詞"; }, 1800);
+      } catch {
+        requirementsCopyButton.textContent = "請手動複製";
+      }
+    });
+  }
   document.querySelectorAll(".nav-group-toggle").forEach((button) => {
     button.addEventListener("click", () => {
       const expanded = button.getAttribute("aria-expanded") === "true";
