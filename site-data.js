@@ -125,8 +125,8 @@ globalThis.AI_MAP_DATA = {
       "當回答太模糊時，AI 會繼續追問；資料足夠後，再整理成完整的使用者需求文件交給你確認。",
       "若使用的工具支援語音輸入，也可以直接用說的回答，就像聊天一樣完成訪談。"
     ],
-    prompt: `/grill me
-/codex-with-chatgpt
+    prompt: `/codex-with-chatgpt
+/grill me
 
 請用一問一答收集我想要做的應用的需求
 每次只輸出1個問題，等我回復再問下一個，禁止一次性輸出大量問題
