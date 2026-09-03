@@ -357,8 +357,7 @@
     const selectedItem = sectionItems.find((item) => item.step === currentStep);
     const items = selectedItem ? [selectedItem] : sectionItems.slice(0, 1);
     const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
-    const notice = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
-    return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">${escapeHtml(notice)}</div></div>`;
+    return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}</div>`;
   };
 
   root.innerHTML = `<div class="site-shell">${sidebar()}<div class="site-main">${header()}<main>${currentId === "overview" ? overview() : sectionPage()}</main></div></div><button class="back-to-top" type="button" aria-label="回到網頁內容最頂端" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6" /></svg><span>回到頂端</span></button>`;
