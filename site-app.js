@@ -192,7 +192,32 @@
     </article>`;
   };
 
-  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : `
+  const uiGuideCard = (item) => {
+    const guide = data.uiGuide;
+    return `<article class="process-card requirements-card ui-guide-card" id="step-${escapeHtml(item.step)}">
+      <div class="process-card-head">
+        <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
+        <span class="process-badge">含 UI Skill 與 2 組提示詞</span>
+      </div>
+      <div class="process-details">
+        <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
+        <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
+        <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
+      </div>
+      <section class="requirements-intro"><span>UI 設計的作用</span><h3>${escapeHtml(guide.lead)}</h3>${guide.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <section class="ui-formula-section" aria-labelledby="ui-formula-title"><div class="requirements-section-head"><div><span>三層疊加，逐步提升</span><h3 id="ui-formula-title">好看的介面設計公式</h3></div></div><div class="ui-formula">${guide.formula.map((entry, index) => `<article><span>${escapeHtml(entry.number)}</span><strong>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.description)}</p></article>${index < guide.formula.length - 1 ? `<span class="ui-formula-operator" aria-hidden="true">＋</span>` : `<span class="ui-formula-operator" aria-hidden="true">＝</span><strong class="ui-formula-result">好看的介面</strong>`}`).join("")}</div></section>
+      <section class="requirements-prompt" aria-labelledby="ui-prompt-title"><div class="requirements-section-head"><div><span>可直接使用</span><h3 id="ui-prompt-title">UI 設計原文提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="uiGuide">複製提示詞</button></div><pre><code>${escapeHtml(guide.prompt)}</code></pre></section>
+      <div class="requirements-method-grid">
+        <section class="requirements-method"><span class="requirements-number">01</span><div><h3>加入參考圖</h3>${guide.referenceTips.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div></section>
+        <section class="requirements-method requirements-result"><span class="requirements-number">02</span><div><h3>截圖驗收與修正</h3><p>看到間距、卡片、文字、配色或操作狀態不正確時，截圖圈出位置並告訴 AI 修正。</p><p>每次修改後重新檢查桌面、平板與手機，不要只驗收單一畫面。</p></div></section>
+      </div>
+      <section class="requirements-example"><div class="requirements-section-head"><div><span>設計成熟度</span><h3>從方向到精緻介面</h3></div></div><div class="ui-progress-list">${guide.progress.map((entry, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><p>${escapeHtml(entry)}</p></article>`).join("")}</div></section>
+      <section class="prototype-impact ui-sync"><div><span>正式開發前</span><h3>同步更新所有產品文件</h3><p>UI 調整可能改變元件、頁面結構或操作細節；定稿前要讓功能清單、PRD、原型與 UI 設計保持一致。</p></div><div class="requirements-section-head"><div><span>可直接使用</span><h3>文件同步更新提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="uiGuide" data-copy-field="syncPrompt">複製提示詞</button></div><p class="prototype-sync-prompt">${escapeHtml(guide.syncPrompt)}</p></section>
+      <section class="requirements-complete"><span>設計全部定稿</span><strong>取得一致、可實作的完整 UI 設計</strong><p>${escapeHtml(guide.closing)}</p></section>
+    </article>`;
+  };
+
+  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : item.step === "5" ? uiGuideCard(item) : `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(item.name)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
@@ -222,7 +247,7 @@
     const selectedItem = sectionItems.find((item) => item.step === currentStep);
     const items = selectedItem ? [selectedItem] : sectionItems.slice(0, 1);
     const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
-    const notice = ["1", "2", "3", "4"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
+    const notice = ["1", "2", "3", "4", "5"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
     return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">${escapeHtml(notice)}</div></div>`;
   };
 
