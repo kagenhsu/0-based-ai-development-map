@@ -134,8 +134,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .prep-guide-head span { color: var(--site-blue); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
 .prep-guide-head h3 { margin: 0; font-size: 21px; letter-spacing: -0.03em; }
 .prep-guide-head p { margin: 0; color: var(--site-muted); line-height: 1.65; }
+.prep-guide-tabs { display: flex; gap: 8px; max-width: 100%; overflow-x: auto; padding: 0 0 4px; scrollbar-width: thin; }
+.prep-guide-tab { display: inline-flex; flex: 0 0 auto; min-height: 38px; align-items: center; gap: 7px; padding: 0 13px; border: 1px solid var(--site-line); border-radius: 999px; color: var(--site-text); background: var(--site-surface); font-size: 12px; font-weight: 700; }
+.prep-guide-tab span { display: grid; width: 20px; height: 20px; place-items: center; border-radius: 50%; color: var(--site-blue); background: var(--site-blue-soft); font-size: 10px; }
+.prep-guide-tab:hover, .prep-guide-tab:focus-visible { border-color: var(--site-blue); color: var(--site-blue); outline: none; }
 .prep-guide-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-.prep-guide-section { display: grid; align-content: start; gap: 10px; padding: 18px; border: 1px solid #e6e6eb; border-radius: 14px; background: var(--site-surface-soft); }
+.prep-guide-section { display: grid; align-content: start; gap: 10px; scroll-margin-top: calc(var(--site-current-header-height) + 24px); padding: 18px; border: 1px solid #e6e6eb; border-radius: 14px; background: var(--site-surface-soft); }
 .prep-guide-section h4 { margin: 0; color: var(--site-blue); font-size: 15px; }
 .prep-guide-section p { margin: 0; color: var(--site-muted); line-height: 1.7; }
 .prep-guide-section ul { display: grid; gap: 7px; margin: 0; padding-left: 20px; color: var(--site-muted); line-height: 1.6; }
@@ -193,6 +197,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .capability-row { grid-template-columns: 1fr auto; }
   .capability-row p { grid-column: 1 / -1; }
   .process-card { scroll-margin-top: calc(var(--site-mobile-sidebar-height) + var(--site-current-header-height) + 24px); }
+  .prep-guide-section { scroll-margin-top: calc(var(--site-mobile-sidebar-height) + var(--site-current-header-height) + 24px); }
 }
 
 @media (max-width: 560px) {

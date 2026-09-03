@@ -94,7 +94,11 @@
     return "";
   };
 
-  const prepGuide = () => `<section class="prep-guide" aria-labelledby="prep-guide-title"><header class="prep-guide-head"><span>開始前準備</span><h3 id="prep-guide-title">${escapeHtml(data.prepGuide.title)}</h3><p>${escapeHtml(data.prepGuide.lead)}</p></header><div class="prep-guide-grid">${data.prepGuide.sections.map((section) => `<article class="prep-guide-section"><h4>${escapeHtml(section.title)}</h4>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}${section.bullets ? `<ul>${section.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>` : ""}${section.image ? `<figure class="guide-visual"><img src="${escapeHtml(section.image.src)}" alt="${escapeHtml(section.image.alt)}" loading="lazy" /></figure>` : ""}${prepGuideExtra(section)}${section.warning ? `<div class="prep-warning">${escapeHtml(section.warning)}</div>` : ""}</article>`).join("")}</div></section>`;
+  const prepGuideLabels = ["AI 開發助手", "選擇大模型", "高階模型", "性價比模型", "能力提醒", "本機工作空間"];
+
+  const prepGuideNav = () => `<nav class="prep-guide-tabs" aria-label="開始前準備介紹導覽">${prepGuideLabels.map((label, index) => `<a class="prep-guide-tab" href="#prep-guide-section-${index + 1}"><span>${index + 1}</span>${escapeHtml(label)}</a>`).join("")}</nav>`;
+
+  const prepGuide = () => `<section class="prep-guide" aria-labelledby="prep-guide-title"><header class="prep-guide-head"><span>開始前準備</span><h3 id="prep-guide-title">${escapeHtml(data.prepGuide.title)}</h3><p>${escapeHtml(data.prepGuide.lead)}</p></header>${prepGuideNav()}<div class="prep-guide-grid">${data.prepGuide.sections.map((section, index) => `<article class="prep-guide-section" id="prep-guide-section-${index + 1}"><h4>${escapeHtml(section.title)}</h4>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}${section.bullets ? `<ul>${section.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>` : ""}${section.image ? `<figure class="guide-visual"><img src="${escapeHtml(section.image.src)}" alt="${escapeHtml(section.image.alt)}" loading="lazy" /></figure>` : ""}${prepGuideExtra(section)}${section.warning ? `<div class="prep-warning">${escapeHtml(section.warning)}</div>` : ""}</article>`).join("")}</div></section>`;
 
   const processCard = (item) => `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
