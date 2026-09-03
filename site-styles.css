@@ -273,6 +273,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .development-deliverables article > span { color: var(--site-blue); font: 700 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
 .development-deliverables article strong { font-size: 13px; }
 .development-deliverables article p { margin: 0; color: var(--site-muted); font-size: 11px; line-height: 1.55; }
+.development-sequence { display: grid; gap: 16px; padding: 22px; border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-surface-soft); }
+.development-sequence-list { display: flex; align-items: stretch; gap: 8px; min-width: 0; }
+.development-sequence-list article { display: grid; flex: 1 1 0; align-content: start; gap: 8px; min-width: 0; padding: 15px; border: 1px solid var(--site-line); border-radius: 13px; background: var(--site-surface); box-shadow: 0 7px 18px rgba(29, 29, 31, 0.04); }
+.development-sequence-list article > span { color: var(--site-blue); font: 700 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.development-sequence-list article strong { font-size: 13px; line-height: 1.45; }
+.development-sequence-list article p { margin: 0; color: var(--site-muted); font-size: 11px; line-height: 1.55; }
+.development-sequence-arrow { display: grid; flex: 0 0 20px; place-items: center; align-self: center; color: var(--site-blue); font-size: 18px; font-weight: 700; }
 .version-reasons, .version-cycle, .version-snapshot, .version-commands, .version-package { display: grid; gap: 16px; padding: 22px; border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-surface-soft); }
 .version-reasons > div:last-child { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .version-reasons article { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 12px; min-width: 0; padding: 18px; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-surface); }
@@ -405,6 +412,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .plan-flow-arrow { min-height: 22px; transform: rotate(90deg); }
   .development-flow-list { grid-template-columns: 1fr; }
   .development-flow-arrow { min-height: 22px; transform: rotate(90deg); }
+  .development-sequence-list { flex-direction: column; }
+  .development-sequence-arrow { min-height: 22px; transform: rotate(90deg); }
   .development-deliverables > div:last-child { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .version-cycle-list { grid-template-columns: 1fr; }
   .version-cycle-arrow { min-height: 22px; transform: rotate(90deg); }
