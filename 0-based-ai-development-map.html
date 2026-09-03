@@ -1148,6 +1148,29 @@ html&gt;body{padding:0}&lt;/style&gt;
       #personal-ai-app-development-map .detail-card {
         position: static;
       }
+
+      #personal-ai-app-development-map .flowchart-track {
+        flex-direction: column;
+        overflow-x: visible;
+        padding-bottom: 3px;
+      }
+
+      #personal-ai-app-development-map .flowchart-item {
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+      }
+
+      #personal-ai-app-development-map .flowchart-node {
+        width: 100%;
+        min-height: 64px;
+      }
+
+      #personal-ai-app-development-map .flowchart-connector {
+        align-self: center;
+        transform: rotate(90deg);
+      }
     }
 
     @media (max-width: 600px) {
@@ -1554,11 +1577,34 @@ Mermaid流程圖直接輸出代碼快；
 
       const renderMap = () =&gt; {
         const shown = visibleSteps();
+        const coreCount = shown.filter((step) =&gt; step.step !== &quot;0&quot;).length;
+        const flowchart = shown.length === 0
+          ? `&lt;p class=&quot;empty-state text-small&quot;&gt;目前沒有符合的流程&lt;/p&gt;`
+          : `&lt;div class=&quot;flowchart&quot; aria-label=&quot;AI 開發旅程流程圖&quot;&gt;
+              &lt;div class=&quot;flowchart-caption&quot;&gt;
+                &lt;strong&gt;${coreCount} 個核心流程${shown.some((step) =&gt; step.step === &quot;0&quot;) ? &quot;＋1 個起點&quot; : &quot;&quot;}&lt;/strong&gt;
+                &lt;span class=&quot;text-small&quot;&gt;點擊節點可查看詳細資料&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;flowchart-track&quot; role=&quot;list&quot;&gt;
+                ${shown.map((step, index) =&gt; {
+                  const phase = phases.find((item) =&gt; item.id === step.phase);
+                  return `&lt;div class=&quot;flowchart-item&quot; role=&quot;listitem&quot;&gt;
+                    &lt;button class=&quot;flowchart-node&quot; type=&quot;button&quot; data-step-id=&quot;${escapeHtml(step.id)}&quot; aria-pressed=&quot;${step.id === selectedId ? &quot;true&quot; : &quot;false&quot;}&quot; style=&quot;--flow-color:${phase.color}&quot;&gt;
+                      &lt;span class=&quot;flowchart-step text-small&quot;&gt;STEP ${escapeHtml(step.step)}&lt;/span&gt;
+                      &lt;span class=&quot;flowchart-name&quot;&gt;${escapeHtml(step.name)}&lt;/span&gt;
+                      &lt;span class=&quot;flowchart-phase text-small&quot;&gt;${escapeHtml(phase.label)}&lt;/span&gt;
+                    &lt;/button&gt;
+                    ${index &lt; shown.length - 1 ? `&lt;span class=&quot;flowchart-connector&quot; aria-hidden=&quot;true&quot;&gt;&lt;i data-lucide=&quot;arrow-right&quot;&gt;&lt;/i&gt;&lt;/span&gt;` : &quot;&quot;}
+                  &lt;/div&gt;`;
+                }).join(&quot;&quot;)}
+              &lt;/div&gt;
+            &lt;/div&gt;`;
         const hub = `
           &lt;div class=&quot;journey-hub journey-hub--route&quot;&gt;
             &lt;div class=&quot;hub-kicker&quot;&gt;&lt;i data-lucide=&quot;route&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;流程總覽&lt;/span&gt;&lt;/div&gt;
             &lt;strong&gt;AI 開發旅程&lt;/strong&gt;
             &lt;span class=&quot;text-small&quot;&gt;先定義，再設計；先驗收，再發布&lt;/span&gt;
+            ${flowchart}
           &lt;/div&gt;
         `;
         const phaseMarkup = phases.map((phase) =&gt; {
@@ -1745,6 +1791,103 @@ Mermaid流程圖直接輸出代碼快；
 
     #personal-ai-app-development-map .journey-hub &gt; span:not(.hub-kicker) {
       color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .flowchart {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    #personal-ai-app-development-map .flowchart-caption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px 12px;
+    }
+
+    #personal-ai-app-development-map .flowchart-caption strong {
+      color: var(--foreground);
+      font-size: var(--font-size-small);
+      letter-spacing: 0;
+    }
+
+    #personal-ai-app-development-map .flowchart-caption span {
+      color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .flowchart-track {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+      min-width: 0;
+      overflow-x: auto;
+      padding: 3px 2px 10px;
+      scrollbar-width: thin;
+    }
+
+    #personal-ai-app-development-map .flowchart-item {
+      display: flex;
+      flex: 1 0 118px;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    #personal-ai-app-development-map .flowchart-node {
+      display: grid;
+      flex: 1 1 auto;
+      gap: 5px;
+      width: 118px;
+      min-height: 88px;
+      padding: 11px;
+      border: 1px solid color-mix(in srgb, var(--flow-color) 30%, var(--border));
+      border-radius: 17px;
+      color: var(--foreground);
+      background: var(--background);
+      text-align: start;
+      transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      touch-action: manipulation;
+    }
+
+    #personal-ai-app-development-map .flowchart-node:hover {
+      border-color: var(--flow-color);
+      background: color-mix(in srgb, var(--flow-color) 6%, var(--background));
+    }
+
+    #personal-ai-app-development-map .flowchart-node[aria-pressed=&quot;true&quot;] {
+      border-color: var(--flow-color);
+      box-shadow: inset 0 0 0 1px var(--flow-color);
+    }
+
+    #personal-ai-app-development-map .flowchart-step {
+      color: var(--flow-color);
+    }
+
+    #personal-ai-app-development-map .flowchart-step {
+      font-family: var(--font-mono);
+    }
+
+    #personal-ai-app-development-map .flowchart-name {
+      font-weight: var(--font-weight-medium);
+      overflow-wrap: anywhere;
+    }
+
+    #personal-ai-app-development-map .flowchart-phase {
+      color: var(--muted-foreground);
+    }
+
+    #personal-ai-app-development-map .flowchart-connector {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      color: var(--primary);
+    }
+
+    #personal-ai-app-development-map .flowchart-connector svg {
+      width: 16px;
+      height: 16px;
     }
 
     #personal-ai-app-development-map .map-main {
