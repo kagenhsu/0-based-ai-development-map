@@ -284,7 +284,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .development-sequence-list article strong { font-size: 13px; line-height: 1.45; }
 .development-sequence-list article p { margin: 0; color: var(--site-muted); font-size: 11px; line-height: 1.55; }
 .development-sequence-arrow { display: grid; flex: 0 0 20px; place-items: center; align-self: center; color: var(--site-blue); font-size: 18px; font-weight: 700; }
-.version-reasons, .version-cycle, .version-snapshot, .version-commands, .version-package { display: grid; gap: 16px; padding: 22px; border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-surface-soft); }
+.version-reasons, .version-cycle, .version-snapshot, .version-commands, .version-operation-prompts, .version-package { display: grid; gap: 16px; padding: 22px; border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-surface-soft); }
 .version-reasons > div:last-child { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .version-reasons article { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 12px; min-width: 0; padding: 18px; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-surface); }
 .version-reasons article > span { display: grid; width: 40px; height: 40px; place-items: center; border-radius: 12px; color: var(--site-blue); background: var(--site-blue-soft); font: 700 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
@@ -305,6 +305,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .version-commands article span { color: var(--site-blue); font: 700 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
 .version-commands article strong { font-size: 13px; line-height: 1.5; }
 .version-command-arrow { display: grid; flex: 0 0 20px; place-items: center; align-self: center; color: var(--site-blue); font-size: 18px; font-weight: 700; }
+.version-operation-prompts > .requirements-section-head > p { max-width: 380px; margin: 0; color: var(--site-muted); font-size: 12px; line-height: 1.6; text-align: right; }
+.version-operation-prompt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.version-operation-prompt { min-width: 0; margin: 0; }
+.version-operation-prompt .requirements-section-head h4 { margin: 0; color: #fff; font-size: 16px; line-height: 1.45; }
+.version-operation-prompt pre { max-height: 330px; }
 .version-package > p { margin: 0; padding: 15px; border: 1px solid #cfe4fb; border-radius: 12px; color: var(--site-text); background: var(--site-surface); font: 13px/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
 .version-package aside { display: grid; gap: 5px; padding: 14px 16px; border-left: 3px solid #d89b00; border-radius: 0 12px 12px 0; color: #6b5126; background: #fff7e6; }
 .version-package aside strong { color: #7a4b00; font-size: 12px; }
@@ -426,6 +431,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .version-snapshot ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .version-command-flow { flex-direction: column; }
   .version-command-arrow { min-height: 22px; transform: rotate(90deg); }
+  .version-operation-prompt-grid { grid-template-columns: 1fr; }
   .release-options > div:last-child { grid-template-columns: 1fr; }
   .release-personal-flow { grid-template-columns: 1fr; }
   .release-personal-arrow { min-height: 22px; transform: rotate(90deg); }
@@ -463,6 +469,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .development-rules ol, .development-deliverables > div:last-child { grid-template-columns: 1fr; }
   .development-rules li:last-child { grid-column: auto; }
   .version-reasons > div:last-child, .version-snapshot ul { grid-template-columns: 1fr; }
+  .version-operation-prompts > .requirements-section-head > p { max-width: none; text-align: left; }
   .release-options .requirements-section-head > p { max-width: none; text-align: left; }
   .release-checklist ul { grid-template-columns: 1fr; }
   .back-to-top { width: 48px; height: 48px; }
