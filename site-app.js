@@ -197,7 +197,7 @@
     return `<article class="process-card requirements-card ui-guide-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
-        <span class="process-badge">含 UI Skill 與 2 組提示詞</span>
+        <span class="process-badge">含 UI Skill 與 3 組提示詞</span>
       </div>
       <div class="process-details">
         <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
@@ -212,6 +212,7 @@
         <section class="requirements-method requirements-result"><span class="requirements-number">02</span><div><h3>截圖驗收與修正</h3><p>看到間距、卡片、文字、配色或操作狀態不正確時，截圖圈出位置並告訴 AI 修正。</p><p>每次修改後重新檢查桌面、平板與手機，不要只驗收單一畫面。</p></div></section>
       </div>
       <section class="requirements-example"><div class="requirements-section-head"><div><span>設計成熟度</span><h3>從方向到精緻介面</h3></div></div><div class="ui-progress-list">${guide.progress.map((entry, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><p>${escapeHtml(entry)}</p></article>`).join("")}</div></section>
+      <section class="requirements-prompt" aria-labelledby="ui-maturity-prompt-title"><div class="requirements-section-head"><div><span>調整與測試使用</span><h3 id="ui-maturity-prompt-title">設計成熟度檢查提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="uiGuide" data-copy-field="maturityPrompt">複製提示詞</button></div><pre><code>${escapeHtml(guide.maturityPrompt)}</code></pre></section>
       <section class="prototype-impact ui-sync"><div><span>正式開發前</span><h3>同步更新所有產品文件</h3><p>UI 調整可能改變元件、頁面結構或操作細節；定稿前要讓功能清單、PRD、原型與 UI 設計保持一致。</p></div><div class="requirements-section-head"><div><span>可直接使用</span><h3>文件同步更新提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="uiGuide" data-copy-field="syncPrompt">複製提示詞</button></div><p class="prototype-sync-prompt">${escapeHtml(guide.syncPrompt)}</p></section>
       <section class="requirements-complete"><span>設計全部定稿</span><strong>取得一致、可實作的完整 UI 設計</strong><p>${escapeHtml(guide.closing)}</p></section>
     </article>`;
