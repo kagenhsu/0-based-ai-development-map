@@ -306,7 +306,28 @@
     </article>`;
   };
 
-  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : item.step === "5" ? uiGuideCard(item) : item.step === "6" ? trdGuideCard(item) : item.step === "7" ? developmentPlanGuideCard(item) : item.step === "8" ? productDevelopmentGuideCard(item) : item.step === "9" ? acceptanceVersionGuideCard(item) : `
+  const releaseUseGuideCard = (item) => {
+    const guide = data.releaseUseGuide;
+    return `<article class="process-card requirements-card release-use-card" id="step-${escapeHtml(item.step)}">
+      <div class="process-card-head">
+        <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
+        <span class="process-badge">實機發布</span>
+      </div>
+      <div class="process-details">
+        <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
+        <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
+        <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
+      </div>
+      <section class="requirements-intro"><span>最後發布</span><h3>${escapeHtml(guide.lead)}</h3>${guide.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <section class="release-options" aria-labelledby="release-options-title"><div class="requirements-section-head"><div><span>依使用方式選擇</span><h3 id="release-options-title">三種發布方案</h3></div><p>先看用途與限制，再決定要複製資料夾、使用網址或安裝成 PWA。</p></div><div>${guide.options.map((option) => `<article><header><span>${escapeHtml(option.number)}</span><h4>${escapeHtml(option.title)}</h4></header><dl><div><dt>適合</dt><dd>${escapeHtml(option.bestFor)}</dd></div><div><dt>最後拿到</dt><dd>${escapeHtml(option.result)}</dd></div></dl><ol>${option.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol><p>${escapeHtml(option.note)}</p></article>`).join("")}</div></section>
+      <section class="release-personal" aria-labelledby="release-personal-title"><div class="requirements-section-head"><div><span>自己手機使用</span><h3 id="release-personal-title">從複製資料夾到下次秒開</h3></div></div><div class="release-personal-flow">${guide.personalSteps.map((entry, index) => `<article><span>${escapeHtml(entry.number)}</span><strong>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.description)}</p></article>${index < guide.personalSteps.length - 1 ? `<span class="release-personal-arrow" aria-hidden="true">→</span>` : ""}`).join("")}</div></section>
+      <section class="release-checklist" aria-labelledby="release-checklist-title"><div class="requirements-section-head"><div><span>發布前最後確認</span><h3 id="release-checklist-title">六項完成條件</h3></div></div><ul>${guide.checklist.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul></section>
+      <aside class="release-source-note"><strong>本步驟沒有原文提示詞</strong><span>${escapeHtml(guide.sourceNote)}</span></aside>
+      <section class="requirements-complete"><span>正式開始使用</span><strong>實機驗收完成，從書籤、網址或主畫面開啟</strong><p>${escapeHtml(guide.closing)}</p></section>
+    </article>`;
+  };
+
+  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : item.step === "5" ? uiGuideCard(item) : item.step === "6" ? trdGuideCard(item) : item.step === "7" ? developmentPlanGuideCard(item) : item.step === "8" ? productDevelopmentGuideCard(item) : item.step === "9" ? acceptanceVersionGuideCard(item) : item.step === "10" ? releaseUseGuideCard(item) : `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(item.name)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
@@ -336,7 +357,7 @@
     const selectedItem = sectionItems.find((item) => item.step === currentStep);
     const items = selectedItem ? [selectedItem] : sectionItems.slice(0, 1);
     const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
-    const notice = ["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
+    const notice = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
     return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">${escapeHtml(notice)}</div></div>`;
   };
 

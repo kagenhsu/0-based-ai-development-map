@@ -515,6 +515,57 @@ Mermaid流程圖直接輸出代碼快；
     backupNote: "工作空間內的版本快照仍在同一台電腦，不等於外部備份。重要版本應再複製到另一個磁碟或已確認權限與敏感資料範圍的 GitHub 儲存庫。",
     closing: "驗收標準是實際使用時符合你的需求。發現不對就截圖說明並建立新版本，反覆調整到滿意後，再把最終版本打包到你指定的位置。"
   },
+  releaseUseGuide: {
+    title: "第十步：發布使用（版本發布）",
+    lead: "把驗收完成的版本放到實際裝置，確認能開啟、能操作，也知道下一次要從哪裡進入。",
+    intro: [
+      "如果只是自己使用，可以把完整專案資料夾複製到手機，在檔案管理器中開啟 HTML 首頁，再將頁面加入書籤。",
+      "但手機直接開啟本機 HTML 的支援會因系統、瀏覽器與功能而不同；如果網站需要網路請求、登入、資料同步或離線安裝，使用 HTTPS 網址會更穩定。"
+    ],
+    options: [
+      {
+        number: "01",
+        title: "手機直接開 HTML",
+        bestFor: "純靜態、自己使用、沒有後端服務",
+        result: "手機內可直接開啟的本機網頁",
+        steps: ["複製完整專案資料夾", "用檔案管理器開啟 index.html", "確認 CSS、JavaScript 與圖片正常", "加入瀏覽器書籤"],
+        note: "不同手機可能限制 file:// 頁面功能；不能只複製單一 HTML。"
+      },
+      {
+        number: "02",
+        title: "使用公開網址",
+        bestFor: "跨裝置使用、需要分享或穩定更新",
+        result: "可直接收藏與分享的 HTTPS 網址",
+        steps: ["選擇 GitHub Pages 或網站主機", "上傳已驗收版本", "檢查公開範圍與敏感資料", "用手機實際開啟並收藏"],
+        note: "通常需要網路；更新網站前仍要保存上一個可回滾版本。"
+      },
+      {
+        number: "03",
+        title: "安裝成類 App（PWA）",
+        bestFor: "想加入手機主畫面、需要較完整 App 體驗",
+        result: "可從手機主畫面啟動的網站應用",
+        steps: ["使用 HTTPS 網址", "加入 manifest 與應用圖示", "設定 service worker", "測試安裝、更新與離線行為"],
+        note: "PWA 支援與安裝方式依 iOS、Android 和瀏覽器而異。"
+      }
+    ],
+    personalSteps: [
+      { number: "01", title: "複製完整資料夾", description: "HTML、CSS、JavaScript、圖片與資料檔一起保留原結構。" },
+      { number: "02", title: "點擊首頁檔案", description: "在檔案管理器開啟 index.html 或專案指定首頁。" },
+      { number: "03", title: "實機操作確認", description: "逐頁檢查按鈕、資料保存、圖片與離線限制。" },
+      { number: "04", title: "收藏到書籤", description: "下次從書籤快速開啟，不必重新找檔案。" },
+      { number: "05", title: "需要時升級 PWA", description: "若要主畫面圖示與類 App 體驗，再規劃 PWA。" }
+    ],
+    checklist: [
+      "發布內容是已驗收版本",
+      "發布前已保存可回滾版本",
+      "手機或目標裝置可正常開啟",
+      "主要流程與資料保存已實測",
+      "知道網址、檔案或圖示從哪裡進入",
+      "已記錄備份位置與後續維護方式"
+    ],
+    sourceNote: "本步驟沒有提供原文提示詞，因此以操作流程、方案差異與發布檢查表呈現。",
+    closing: "發布不是只把檔案搬過去；要在實際裝置完成一次開啟與操作驗收。收藏到書籤或安裝到主畫面後，才算真正可以日常使用。"
+  },
   sections: [
     { id: "prep", number: "01", label: "專案準備", short: "確認專案位置", page: "step-1-project-preparation.html" },
     { id: "product", number: "02", label: "產品定義", short: "釐清需求與功能", page: "step-2-product-definition.html" },
@@ -538,6 +589,6 @@ Mermaid流程圖直接輸出代碼快；
     { id: "plan", step: "7", section: "build", name: "開發計畫", purpose: "把大工程拆成可控任務", push: "技術方向已清楚，需要知道先做什麼、誰做、如何驗收。", materials: ["PRD 與 TRD", "預計迭代週期", "可投入的人力與時間"], result: "迭代、里程碑、前後端與測試任務、依賴關係及驗收順序。", promptAvailable: true },
     { id: "development", step: "8", section: "build", name: "產品開發與測試", purpose: "依文件逐步做出可運作版本", push: "需求、設計、技術文件與任務順序都已確認。", materials: ["PRD、原型、UI、TRD、開發計畫", "專案工作空間", "每個模組的驗收標準"], result: "可運作的系統、資料與接口、測試紀錄與自我核對清單。", promptAvailable: true },
     { id: "acceptance", step: "9", section: "release", name: "驗收與版本管理", purpose: "反覆修改仍能比較與回復", push: "已有可操作版本，需要依實際使用感受迭代，不讓改版失去控制。", materials: ["目前版本", "驗收清單與截圖", "問題、修改要求與版本命名規則"], result: "驗收紀錄、問題清單、新版本快照、變更摘要與可回滾版本。", promptAvailable: true },
-    { id: "release", step: "10", section: "release", name: "發布與使用", purpose: "把完成版本放到實際裝置使用", push: "最終版本已通過驗收，需要打包、備份或放到指定位置。", materials: ["已驗收版本", "發布位置或裝置", "備份、網址、上架或安裝需求"], result: "可使用的發布版本、打包位置、操作方式、備份紀錄與後續維護清單。", promptAvailable: true }
+    { id: "release", step: "10", section: "release", name: "發布與使用", purpose: "把完成版本放到實際裝置使用", push: "最終版本已通過驗收，需要打包、備份或放到指定位置。", materials: ["已驗收版本", "發布位置或裝置", "備份、網址、上架或安裝需求"], result: "可使用的發布版本、打包位置、操作方式、備份紀錄與後續維護清單。", promptAvailable: false }
   ]
 };
