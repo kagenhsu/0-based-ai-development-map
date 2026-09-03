@@ -13,6 +13,18 @@
   const currentId = document.body.dataset.section || "overview";
   const currentSection = data.sections.find((section) => section.id === currentId);
   const itemCount = (sectionId) => data.items.filter((item) => item.section === sectionId).length;
+  const navStorageKey = "ai-map-sidebar-groups";
+  const hashStep = location.hash.startsWith("#step-") ? location.hash.slice(6) : "";
+  const currentStep = hashStep || data.items.find((item) => item.section === currentId)?.step || "";
+  const readNavState = () => {
+    try { return JSON.parse(localStorage.getItem(navStorageKey) || "{}"); }
+    catch { return {}; }
+  };
+  const writeNavState = (state) => {
+    try { localStorage.setItem(navStorageKey, JSON.stringify(state)); }
+    catch { /* Local storage may be unavailable in restricted browsers. */ }
+  };
+  const initialNavState = readNavState();
 
   const itemForStep = (step) => data.items.find((item) => item.step === step);
   const itemHref = (item) => {
@@ -32,9 +44,9 @@
           <span class="nav-number">00</span><span class="nav-copy"><strong>首頁總覽</strong><small>查看完整流程</small></span>
         </a>
         ${data.flowStages.map((stage) => {
-          const isCurrentStage = stage.steps.some((step) => itemForStep(step)?.section === currentId);
-          const isOpen = currentId === "overview" ? stage.id === "stage-1" : isCurrentStage;
-          return `<div class="nav-group"><button class="nav-group-toggle" type="button" aria-expanded="${isOpen}" aria-controls="${stage.id}-submenu"><span class="nav-number">${escapeHtml(stage.number)}</span><span class="nav-group-copy"><strong>${escapeHtml(stage.title)}｜${escapeHtml(stage.label)}</strong><small>${escapeHtml(stage.description)}</small></span><span class="nav-chevron" aria-hidden="true">⌄</span></button><div class="nav-submenu" id="${stage.id}-submenu"${isOpen ? "" : " hidden"}>${stage.steps.map((step) => { const item = itemForStep(step); return item ? `<a class="nav-sub-link" href="${itemHref(item)}" aria-current="${item.section === currentId ? "page" : "false"}"><span>第 ${escapeHtml(item.step)} 步</span><strong>${escapeHtml(item.name)}</strong></a>` : ""; }).join("")}</div></div>`;
+          const defaultOpen = currentId === "overview" ? stage.id === "stage-1" : stage.steps.includes(currentStep);
+          const isOpen = typeof initialNavState[stage.id] === "boolean" ? initialNavState[stage.id] : defaultOpen;
+          return `<div class="nav-group"><button class="nav-group-toggle" type="button" data-stage-id="${stage.id}" aria-expanded="${isOpen}" aria-controls="${stage.id}-submenu"><span class="nav-number">${escapeHtml(stage.number)}</span><span class="nav-group-copy"><strong>${escapeHtml(stage.title)}｜${escapeHtml(stage.label)}</strong><small>${escapeHtml(stage.description)}</small></span><span class="nav-chevron" aria-hidden="true">⌄</span></button><div class="nav-submenu" id="${stage.id}-submenu"${isOpen ? "" : " hidden"}>${stage.steps.map((step) => { const item = itemForStep(step); return item ? `<a class="nav-sub-link" href="${itemHref(item)}" aria-current="${item.step === currentStep ? "page" : "false"}"><span>第 ${escapeHtml(item.step)} 步</span><strong>${escapeHtml(item.name)}</strong></a>` : ""; }).join("")}</div></div>`;
         }).join("")}
       </nav>
       <p class="sidebar-foot">點選階段名稱展開子流程；每個階段都可獨立查看與交付。</p>
@@ -86,8 +98,19 @@
       const expanded = button.getAttribute("aria-expanded") === "true";
       button.setAttribute("aria-expanded", String(!expanded));
       document.getElementById(button.getAttribute("aria-controls")).hidden = expanded;
+      const navState = readNavState();
+      navState[button.dataset.stageId] = !expanded;
+      writeNavState(navState);
     });
   });
+  const syncCurrentChild = () => {
+    const activeStep = location.hash.startsWith("#step-") ? location.hash.slice(6) : currentStep;
+    document.querySelectorAll(".nav-sub-link").forEach((link) => {
+      const linkStep = new URL(link.href, location.href).hash.slice(6);
+      link.setAttribute("aria-current", linkStep === activeStep ? "page" : "false");
+    });
+  };
+  window.addEventListener("hashchange", syncCurrentChild);
   const sidebarElement = document.querySelector(".site-sidebar");
   const headerElement = document.querySelector(".site-header");
   if (sidebarElement && headerElement && "ResizeObserver" in window) {
