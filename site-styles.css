@@ -10,6 +10,9 @@
   --site-green: #1f7a4d;
   --site-radius: 18px;
   --site-shadow: 0 12px 28px rgba(29, 29, 31, 0.06);
+  --site-sidebar-width: 268px;
+  --site-header-height: 76px;
+  --site-mobile-sidebar-height: 116px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
   color: var(--site-text);
   background: var(--site-bg);
@@ -21,8 +24,8 @@ body { margin: 0; min-width: 320px; background: var(--site-bg); }
 a { color: inherit; text-decoration: none; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
-.site-shell { display: grid; grid-template-columns: 268px minmax(0, 1fr); min-height: 100vh; }
-.site-sidebar { position: sticky; top: 0; display: flex; min-height: 100vh; flex-direction: column; padding: 24px 16px; border-right: 1px solid var(--site-line); background: rgba(255, 255, 255, 0.86); }
+.site-shell { min-height: 100vh; }
+.site-sidebar { position: fixed; z-index: 40; inset: 0 auto 0 0; display: flex; width: var(--site-sidebar-width); height: 100vh; height: 100dvh; flex-direction: column; overflow-y: auto; overscroll-behavior: contain; padding: 24px 16px; border-right: 1px solid var(--site-line); background: rgba(255, 255, 255, 0.86); box-shadow: 8px 0 24px rgba(29, 29, 31, 0.04); }
 .brand { display: flex; align-items: center; gap: 10px; padding: 0 10px 28px; }
 .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 11px; color: #fff; background: var(--site-blue); font-weight: 700; }
 .brand-copy { display: grid; gap: 2px; }
@@ -39,8 +42,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .nav-copy small { color: var(--site-muted); font-size: 11px; }
 .sidebar-foot { margin-top: auto; padding: 16px 10px 0; color: var(--site-muted); font-size: 11px; line-height: 1.6; }
 
-.site-main { min-width: 0; }
-.site-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; padding: 16px clamp(18px, 4vw, 52px); border-bottom: 1px solid var(--site-line); background: rgba(245, 245, 247, 0.92); }
+.site-main { min-width: 0; margin-left: var(--site-sidebar-width); padding-top: var(--site-header-height); }
+.site-header { position: fixed; z-index: 30; top: 0; right: 0; left: var(--site-sidebar-width); display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: var(--site-header-height); padding: 16px clamp(18px, 4vw, 52px); border-bottom: 1px solid var(--site-line); background: rgba(245, 245, 247, 0.92); box-shadow: 0 8px 24px rgba(29, 29, 31, 0.05); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
 .breadcrumb { display: grid; gap: 4px; min-width: 0; }
 .breadcrumb span { color: var(--site-muted); font-size: 12px; }
 .breadcrumb strong { overflow-wrap: anywhere; font-size: 18px; letter-spacing: -0.02em; }
@@ -128,15 +131,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .notice { margin-top: 24px; padding: 16px 18px; border-left: 3px solid var(--site-blue); color: var(--site-muted); background: var(--site-blue-soft); line-height: 1.65; }
 
 @media (max-width: 880px) {
-  .site-shell { grid-template-columns: 1fr; }
-  .site-sidebar { position: relative; min-height: auto; padding: 14px 14px 10px; border-right: 0; border-bottom: 1px solid var(--site-line); }
+  .site-sidebar { position: sticky; inset: auto; width: auto; height: auto; min-height: auto; overflow: visible; padding: 14px 14px 10px; border-right: 0; border-bottom: 1px solid var(--site-line); box-shadow: 0 8px 24px rgba(29, 29, 31, 0.05); }
   .brand { padding: 0 4px 12px; }
   .nav-label, .sidebar-foot { display: none; }
   .site-nav { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 4px; }
   .nav-link { flex: 0 0 auto; grid-template-columns: auto; min-height: 42px; padding: 7px 10px; }
   .nav-copy small { display: none; }
   .nav-copy strong { font-size: 12px; white-space: nowrap; }
-  .site-header { min-height: 68px; padding: 14px 18px; }
+  .site-main { margin-left: 0; padding-top: 0; }
+  .site-header { position: sticky; z-index: 30; top: var(--site-mobile-sidebar-height); left: auto; min-height: 68px; padding: 14px 18px; }
   .section-grid { grid-template-columns: 1fr; }
   .process-details { grid-template-columns: 1fr; }
   .stage-row { flex-direction: column; }
