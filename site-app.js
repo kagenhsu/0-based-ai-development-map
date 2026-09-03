@@ -217,7 +217,30 @@
     </article>`;
   };
 
-  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : item.step === "5" ? uiGuideCard(item) : `
+  const trdGuideCard = (item) => {
+    const guide = data.trdGuide;
+    return `<article class="process-card requirements-card trd-guide-card" id="step-${escapeHtml(item.step)}">
+      <div class="process-card-head">
+        <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
+        <span class="process-badge">含完整 TRD 提示詞</span>
+      </div>
+      <div class="process-details">
+        <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
+        <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
+        <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
+      </div>
+      <section class="requirements-intro"><span>先畫施工圖，再動工</span><h3>${escapeHtml(guide.lead)}</h3>${guide.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <section class="prototype-journey" aria-labelledby="trd-flow-title"><div class="requirements-section-head"><div><span>開發前置流程</span><h3 id="trd-flow-title">從產品文件到技術施工圖</h3></div></div><div class="prototype-journey-flow">${guide.flow.map((entry, index) => `<article><span>${escapeHtml(entry.number)}</span><strong>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.description)}</p></article>${index < guide.flow.length - 1 ? `<span class="prototype-journey-arrow" aria-hidden="true">→</span>` : ""}`).join("")}</div></section>
+      <section class="trd-outline" aria-labelledby="trd-outline-title"><div class="requirements-section-head"><div><span>文件架構</span><h3 id="trd-outline-title">TRD 十大章節</h3></div></div><ol>${guide.outline.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ol></section>
+      <section class="requirements-prompt" aria-labelledby="trd-prompt-title"><div class="requirements-section-head"><div><span>可直接使用</span><h3 id="trd-prompt-title">TRD 原文提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="trdGuide">複製提示詞</button></div><pre><code>${escapeHtml(guide.prompt)}</code></pre></section>
+      <section class="trd-boundary"><div><strong>忠實 PRD</strong><p>不新增產品功能，缺失或模糊內容統一標記【●待產品/業務(功能)確認】。</p></div><div><strong>不自行選型</strong><p>除非 PRD 已明確指定，否則不直接決定 Redis、MySQL 等具體技術方案。</p></div><div><strong>可直接交付</strong><p>以研發視角輸出 Markdown、Mermaid、表格、異常規則與測試校驗要點。</p></div></section>
+      <section class="requirements-example"><div class="requirements-section-head"><div><span>閱讀方式</span><h3>依你的角色確認內容</h3></div></div><div class="trd-audience-grid">${guide.audiences.map((audience, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(audience.title)}</strong><p>${escapeHtml(audience.description)}</p></article>`).join("")}</div></section>
+      <div class="prd-review-note"><strong>使用前確認</strong><p>${escapeHtml(guide.note)}</p></div>
+      <section class="requirements-complete"><span>技術施工圖完成</span><strong>取得可交付開發與測試的 TRD</strong><p>${escapeHtml(guide.closing)}</p></section>
+    </article>`;
+  };
+
+  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : item.step === "5" ? uiGuideCard(item) : item.step === "6" ? trdGuideCard(item) : `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(item.name)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
@@ -247,7 +270,7 @@
     const selectedItem = sectionItems.find((item) => item.step === currentStep);
     const items = selectedItem ? [selectedItem] : sectionItems.slice(0, 1);
     const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
-    const notice = ["1", "2", "3", "4", "5"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
+    const notice = ["1", "2", "3", "4", "5", "6"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
     return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">${escapeHtml(notice)}</div></div>`;
   };
 
