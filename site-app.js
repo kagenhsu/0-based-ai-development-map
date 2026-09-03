@@ -128,7 +128,7 @@
     return `<article class="process-card requirements-card feature-guide-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
-        <span class="process-badge">含原文提示詞</span>
+        <span class="process-badge">含 2 組提示詞</span>
       </div>
       <div class="process-details">
         <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
@@ -143,6 +143,7 @@
         <section class="requirements-method requirements-result"><span class="requirements-number">02</span><div><h3>修正後要完整輸出</h3><p>如果 AI 只更新局部內容，再明確要求它整合所有修改，重新提供完整版本。</p><p>完整版本確認後，才能把功能清單定稿。</p></div></section>
       </div>
       <section class="requirements-example feature-fix-example"><div class="requirements-section-head"><div><span>缺漏修正示例</span><h3>健身減肥日記功能清單</h3></div></div><div class="feature-fix-list">${guide.example.issues.map((issue) => `<article><strong>${escapeHtml(issue.feature)}</strong><span>${escapeHtml(issue.missing)}</span></article>`).join("")}</div><div class="feature-correction"><strong>告訴 AI：</strong><p>${escapeHtml(guide.example.correction)}</p></div></section>
+      <section class="requirements-prompt" aria-labelledby="feature-detail-completion-title"><div class="requirements-section-head"><div><span>補充功能清單細節時使用</span><h3 id="feature-detail-completion-title">功能清單細節補充提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="featureGuide" data-copy-field="detailCompletionPrompt">複製補充提示詞</button></div><pre><code>${escapeHtml(guide.detailCompletionPrompt)}</code></pre></section>
       <section class="requirements-complete"><span>功能清單定了</span><strong>取得完整產品功能清單</strong><p>${escapeHtml(guide.closing)}</p></section>
     </article>`;
   };
