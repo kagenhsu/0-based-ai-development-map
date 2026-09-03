@@ -166,7 +166,33 @@
     </article>`;
   };
 
-  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : `
+  const prototypeGuideCard = (item) => {
+    const guide = data.prototypeGuide;
+    return `<article class="process-card requirements-card prototype-guide-card" id="step-${escapeHtml(item.step)}">
+      <div class="process-card-head">
+        <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(guide.title)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
+        <span class="process-badge">含 3 組提示詞</span>
+      </div>
+      <div class="process-details">
+        <section class="process-detail"><h3>適合推</h3><p>${escapeHtml(item.push)}</p></section>
+        <section class="process-detail"><h3>需要提供</h3><ul>${item.materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul></section>
+        <section class="process-detail"><h3>最後拿到</h3><p>${escapeHtml(item.result)}</p></section>
+      </div>
+      <section class="requirements-intro"><span>原型設計的作用</span><h3>${escapeHtml(guide.lead)}</h3>${guide.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <section class="prototype-journey" aria-labelledby="prototype-journey-title"><div class="requirements-section-head"><div><span>先看見，再開發</span><h3 id="prototype-journey-title">從 PRD 到可驗收原型</h3></div></div><div class="prototype-journey-flow">${guide.journey.map((entry, index) => `<article><span>${escapeHtml(entry.number)}</span><strong>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.description)}</p></article>${index < guide.journey.length - 1 ? `<span class="prototype-journey-arrow" aria-hidden="true">→</span>` : ""}`).join("")}</div></section>
+      <section class="requirements-prompt" aria-labelledby="prototype-prompt-title"><div class="requirements-section-head"><div><span>可直接使用</span><h3 id="prototype-prompt-title">原型設計原文提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="prototypeGuide">複製提示詞</button></div><pre><code>${escapeHtml(guide.prompt)}</code></pre></section>
+      <div class="requirements-method-grid">
+        <section class="requirements-method"><span class="requirements-number">01</span><div><h3>實際操作驗收</h3>${guide.acceptance.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div></section>
+        <section class="requirements-method requirements-result"><span class="requirements-number">02</span><div><h3>截圖回報修改</h3><p>覺得哪裡不對，就截圖圈出位置並清楚描述要增加、刪除或調整的規則。</p><p>重複驗收與修改，直到操作流程符合實際需求。</p></div></section>
+      </div>
+      <section class="requirements-example"><div class="requirements-section-head"><div><span>調整示例</span><h3>健身減肥日記原型</h3></div></div><div class="prototype-change-list">${guide.changeExample.map((change) => `<div><span aria-hidden="true">✓</span><p>${escapeHtml(change)}</p></div>`).join("")}</div></section>
+      <section class="prd-correction"><div class="requirements-section-head"><div><span>頁面沒有資料時</span><h3>產生示範資料</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="prototypeGuide" data-copy-field="demoPrompt">複製提示詞</button></div><p>${escapeHtml(guide.demoPrompt)}</p><small>在空格補上需要的示範資料內容，不必花大量時間手動建立測試資料。</small></section>
+      <section class="prototype-impact"><div><span>調整後要同步文件</span><h3>原型改動會影響產品規則</h3>${guide.impact.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div><div class="requirements-section-head"><div><span>可直接使用</span><h3>文件同步更新提示詞</h3></div><button class="copy-requirements-prompt" type="button" data-copy-guide="prototypeGuide" data-copy-field="syncPrompt">複製提示詞</button></div><p class="prototype-sync-prompt">${escapeHtml(guide.syncPrompt)}</p></section>
+      <section class="requirements-complete"><span>原型驗收完成</span><strong>取得可點擊、可操作的產品原型</strong><p>${escapeHtml(guide.closing)}</p></section>
+    </article>`;
+  };
+
+  const processCard = (item) => item.step === "1" ? requirementsGuideCard(item) : item.step === "2" ? featureGuideCard(item) : item.step === "3" ? prdGuideCard(item) : item.step === "4" ? prototypeGuideCard(item) : `
     <article class="process-card" id="step-${escapeHtml(item.step)}">
       <div class="process-card-head">
         <div class="process-card-title"><span class="process-step">STEP ${escapeHtml(item.step)}</span><h2>${escapeHtml(item.name)}</h2><p class="process-purpose">${escapeHtml(item.purpose)}</p></div>
@@ -196,7 +222,7 @@
     const selectedItem = sectionItems.find((item) => item.step === currentStep);
     const items = selectedItem ? [selectedItem] : sectionItems.slice(0, 1);
     const pageGuide = items.some((item) => item.step === "0") ? prepGuide() : "";
-    const notice = ["1", "2", "3"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
+    const notice = ["1", "2", "3", "4"].includes(items[0]?.step) ? "完成本步驟並確認交付結果後，再由側邊欄進入下一步。" : "本階段完成後，再由頁首或側邊欄進入下一階段。需要原文提示詞時，請開啟完整互動地圖。";
     return `<div class="content section-content"><section class="process-list" aria-label="${escapeHtml(currentSection.label)}流程">${items.map(processCard).join("")}</section>${pageGuide}<div class="notice">${escapeHtml(notice)}</div></div>`;
   };
 
