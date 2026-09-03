@@ -13,6 +13,16 @@
 - 每個步驟保留原文提示詞並可直接複製
 - 支援手機、平板、桌面與大螢幕
 - Apple 風格的簡約科技介面
+- 首頁、側邊欄與頁首正式導覽
+- 五大階段各有獨立網頁
+
+## 五大階段
+
+1. [專案準備](step-1-project-preparation.html)
+2. [產品定義](step-2-product-definition.html)
+3. [原型與設計](step-3-prototype-design.html)
+4. [技術與開發](step-4-technology-development.html)
+5. [驗收與發布](step-5-acceptance-release.html)
 
 ## 開發方式
 
