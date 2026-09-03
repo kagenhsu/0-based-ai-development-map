@@ -58,14 +58,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .sidebar-foot { margin-top: auto; padding: 16px 10px 0; color: var(--site-muted); font-size: 11px; line-height: 1.6; }
 
 .site-main { min-width: 0; margin-left: var(--site-sidebar-width); padding-top: var(--site-header-height); }
-.site-header { position: fixed; z-index: 30; top: 0; right: 0; left: var(--site-sidebar-width); display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: var(--site-header-height); padding: 16px clamp(18px, 4vw, 52px); border-bottom: 1px solid var(--site-line); background: rgba(245, 245, 247, 0.92); box-shadow: 0 8px 24px rgba(29, 29, 31, 0.05); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.site-header { position: fixed; z-index: 30; top: 0; right: 0; left: var(--site-sidebar-width); display: flex; align-items: center; justify-content: flex-start; gap: 16px; min-height: var(--site-header-height); padding: 16px clamp(18px, 4vw, 52px); border-bottom: 1px solid var(--site-line); background: rgba(245, 245, 247, 0.92); box-shadow: 0 8px 24px rgba(29, 29, 31, 0.05); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
 .breadcrumb { display: grid; gap: 4px; min-width: 0; }
 .breadcrumb span { color: var(--site-muted); font-size: 12px; }
 .breadcrumb strong { overflow-wrap: anywhere; font-size: 18px; letter-spacing: -0.02em; }
 .breadcrumb small { overflow-wrap: anywhere; color: var(--site-muted); font-size: 11px; }
-.header-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
-.header-link { display: inline-flex; min-height: 40px; align-items: center; padding: 0 14px; border: 1px solid var(--site-line); border-radius: 999px; color: var(--site-blue); background: var(--site-surface); font-size: 13px; font-weight: 600; }
-.header-link:hover { border-color: var(--site-blue); }
 .content { width: min(1180px, 100%); margin: 0 auto; padding: clamp(24px, 5vw, 64px) clamp(18px, 4vw, 52px) 72px; }
 .eyebrow { margin: 0 0 12px; color: var(--site-blue); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; }
 .hero h1 { max-width: 820px; margin: 0; font-size: clamp(32px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.055em; }
@@ -202,7 +199,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 @media (max-width: 560px) {
   .site-header { align-items: start; flex-direction: column; }
-  .header-actions { justify-content: start; }
   .content { padding: 30px 14px 48px; }
   .hero h1 { font-size: 38px; }
   .story-icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }

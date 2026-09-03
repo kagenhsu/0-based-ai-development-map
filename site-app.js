@@ -55,7 +55,6 @@
   const header = () => `
     <header class="site-header">
       <div class="breadcrumb"><span>${currentSection ? `第 ${currentSection.number} 步驟` : "流程首頁"}</span><strong>${escapeHtml(currentSection?.label ?? "AI 開發流程總覽")}</strong><small>${escapeHtml(currentSection?.short ?? "從想法逐步完成可驗收、可使用的版本")}</small></div>
-      <div class="header-actions"><a class="header-link" href="${data.fullMapUrl}">開啟完整互動地圖</a></div>
     </header>`;
 
   const tenStageFlow = () => `<figure class="flowchart-figure"><div class="flowchart-viewport"><img class="flowchart-image" src="assets/ai-development-flow.png" alt="0 基礎 AI 開發地圖：分成三個階段，從專案準備、需求收集、功能清單與產品需求文件，進入產品原型、UI 設計、技術文件與開發計畫，再完成產品開發、驗收、發布與使用。" /></div></figure>`;
